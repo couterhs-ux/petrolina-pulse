@@ -41,7 +41,7 @@ export const Highlights = () => {
                 </div>
               </div>
               <div className="p-4">
-                <p className="text-xs text-primary font-semibold mb-1">{h.category}</p>
+                <p className="text-xs text-primary font-semibold mb-1">{h.subcategory ?? h.category}</p>
                 <h3 className="font-bold text-base mb-1 line-clamp-1">{h.name}</h3>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground mb-3">
                   <MapPin className="h-3 w-3" />
