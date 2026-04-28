@@ -399,13 +399,47 @@ export const promotions: Business[] = [
   { id: "pr4", name: "Hambúrguer + Batata", company: "Fire Burguer", category: "Delivery", area: "Centro", price: "R$ 24", oldPrice: "R$ 38", off: "37%", ends: "5 dias", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop", phone: "87996625361" },
 ];
 
-// ===== PERTO DE VOCÊ (todos negócios próximos) =====
-export const nearby: (Business & { distance: string })[] = [
-  { id: "n1", name: "Padaria Central", category: "Restaurantes", subcategory: "Padaria", area: "Centro", distance: "350m", rating: 4.7, open: true, image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop", phone: "8799990020" },
-  { id: "n2", name: "Auto Posto Vale", category: "Restaurantes", subcategory: "Posto", area: "Areia Branca", distance: "500m", rating: 4.5, open: true, image: "https://images.unsplash.com/photo-1545262810-77515befe149?w=300&h=300&fit=crop", phone: "8799990021" },
-  { id: "n3", name: "Drogaria São João", category: "Restaurantes", subcategory: "Farmácia", area: "Centro", distance: "700m", rating: 4.8, open: true, image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=300&h=300&fit=crop", phone: "8799990022" },
-  { id: "n4", name: "Mercadinho do Bairro", category: "Restaurantes", subcategory: "Mercado", area: "José e Maria", distance: "900m", rating: 4.6, open: false, image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&h=300&fit=crop", phone: "8799990023" },
+// ===== PERTO DE VOCÊ — coordenadas reais aproximadas em Petrolina-PE =====
+// Centro de Petrolina ~ -9.3891, -40.5030
+export interface NearbyPlace extends Business {
+  lat: number;
+  lng: number;
+}
+
+export const nearby: NearbyPlace[] = [
+  // Centro
+  { id: "n1", name: "Padaria Central", category: "Restaurantes", subcategory: "Padaria", area: "Centro", lat: -9.3895, lng: -40.5025, rating: 4.7, open: true, image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop", phone: "8799990020" },
+  { id: "n3", name: "Drogaria São João", category: "Restaurantes", subcategory: "Farmácia", area: "Centro", lat: -9.3880, lng: -40.5040, rating: 4.8, open: true, image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=300&h=300&fit=crop", phone: "8799990022" },
+  { id: "n5", name: "Mercado Central", category: "Restaurantes", subcategory: "Mercado", area: "Centro", lat: -9.3902, lng: -40.5012, rating: 4.5, open: true, image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&h=300&fit=crop", phone: "8799990024" },
+  // Orla
+  { id: "n6", name: "Piatti & Vino", category: "Restaurantes", subcategory: "Cozinha contemporânea", area: "Orla", lat: -9.3960, lng: -40.5095, rating: 4.8, open: true, image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=300&h=300&fit=crop", phone: "8738611500" },
+  { id: "n7", name: "Quiosque do Rio", category: "Restaurantes", subcategory: "Petiscos & Vista", area: "Orla", lat: -9.3975, lng: -40.5085, rating: 4.6, open: true, image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=300&h=300&fit=crop", phone: "8799990025" },
+  // Areia Branca
+  { id: "n2", name: "Auto Posto Vale", category: "Restaurantes", subcategory: "Posto", area: "Areia Branca", lat: -9.3795, lng: -40.4880, rating: 4.5, open: true, image: "https://images.unsplash.com/photo-1545262810-77515befe149?w=300&h=300&fit=crop", phone: "8799990021" },
+  { id: "n8", name: "Açaí da Areia", category: "Restaurantes", subcategory: "Açaiteria", area: "Areia Branca", lat: -9.3810, lng: -40.4905, rating: 4.7, open: true, image: "https://images.unsplash.com/photo-1591287083773-9a5c5a3c8e0c?w=300&h=300&fit=crop", phone: "8799990026" },
+  // José e Maria
+  { id: "n4", name: "Mercadinho do Bairro", category: "Restaurantes", subcategory: "Mercado", area: "José e Maria", lat: -9.3720, lng: -40.5200, rating: 4.6, open: false, image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&h=300&fit=crop", phone: "8799990023" },
+  // Cohab Massangano
+  { id: "n9", name: "Lanchonete do Zé", category: "Restaurantes", subcategory: "Lanches", area: "Cohab Massangano", lat: -9.3650, lng: -40.4950, rating: 4.4, open: true, image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300&h=300&fit=crop", phone: "8799990027" },
+  // Jardim Maravilha
+  { id: "n10", name: "Pizzaria Maravilha", category: "Restaurantes", subcategory: "Pizzaria", area: "Jardim Maravilha", lat: -9.4020, lng: -40.5180, rating: 4.6, open: true, image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&h=300&fit=crop", phone: "8799990028" },
+  // Dom Avelar
+  { id: "n11", name: "Padaria Dom Avelar", category: "Restaurantes", subcategory: "Padaria", area: "Dom Avelar", lat: -9.4100, lng: -40.4860, rating: 4.5, open: true, image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop", phone: "8799990029" },
+  // Av. do Petróleo
+  { id: "n12", name: "Petisqueira Frigideira Nordestina", category: "Restaurantes", subcategory: "Comida regional", area: "Av. do Petróleo", lat: -9.3850, lng: -40.4750, rating: 4.6, open: true, image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&h=300&fit=crop", phone: "8799990001" },
 ];
+
+// Coordenadas centrais por bairro (fallback caso o usuário negue geolocalização)
+export const NEIGHBORHOOD_COORDS: Record<string, { lat: number; lng: number }> = {
+  "Centro": { lat: -9.3891, lng: -40.5030 },
+  "Orla": { lat: -9.3965, lng: -40.5090 },
+  "Areia Branca": { lat: -9.3800, lng: -40.4890 },
+  "José e Maria": { lat: -9.3720, lng: -40.5200 },
+  "Cohab Massangano": { lat: -9.3650, lng: -40.4950 },
+  "Jardim Maravilha": { lat: -9.4020, lng: -40.5180 },
+  "Dom Avelar": { lat: -9.4100, lng: -40.4860 },
+  "Av. do Petróleo": { lat: -9.3850, lng: -40.4750 },
+};
 
 // Bairros disponíveis para filtro
 export const NEIGHBORHOODS = [

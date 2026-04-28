@@ -1,16 +1,15 @@
-import { Sun, Search, Menu } from "lucide-react";
+import { Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoPnz from "@/assets/logo-pnz.png";
 
-const menu = ["Início", "Restaurantes", "Eventos", "Promoções", "Floriculturas", "Faculdades", "Empregos", "Anunciar"];
+const menu = ["Início", "Restaurantes", "Eventos", "Promoções", "Floriculturas", "Faculdades", "Empregos"];
 
 export const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-lg border-b border-border">
       <div className="container px-4 h-14 flex items-center justify-between gap-4">
         <a href="/" className="flex items-center gap-2 shrink-0">
-          <div className="w-9 h-9 rounded-xl gradient-sun flex items-center justify-center shadow-sun">
-            <Sun className="h-5 w-5 text-primary-foreground" />
-          </div>
+          <img src={logoPnz} alt="Guia PNZ - Viva Petrolina" width={36} height={36} className="w-9 h-9 rounded-xl object-cover shadow-sun" />
           <div className="hidden sm:block">
             <p className="font-black text-base leading-none">Guia PNZ</p>
             <p className="text-[10px] text-muted-foreground leading-tight">Viva Petrolina</p>
