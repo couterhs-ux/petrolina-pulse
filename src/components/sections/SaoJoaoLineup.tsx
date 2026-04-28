@@ -5,7 +5,7 @@ import { toast } from "@/hooks/use-toast";
 
 type Artist = {
   name: string;
-  time: string;
+  time?: string;
   stage: "Palco Principal" | "Palco Cultural" | "Palco Sertão";
   genre: string;
   headliner?: boolean;
