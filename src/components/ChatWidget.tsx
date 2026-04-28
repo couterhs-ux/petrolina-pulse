@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { MessageCircle, X, Send, Loader2, Sparkles } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Sparkles, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import logoPnz from "@/assets/logo-pnz.png";
@@ -27,6 +27,26 @@ export const ChatWidget = () => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  const initialMessage: Msg = {
+    role: "assistant",
+    content:
+      "Opa! Eu sou a **PNZ IA** ☀️ Sua guia esperta de Petrolina. Pode mandar a pergunta — restaurante, evento, vinícola, São João, o que for daqui!",
+  };
+
+  const clearChat = () => {
+    setMessages([initialMessage]);
+    setInput("");
+  };
+
+  // Limpa o chat sempre que o widget é fechado
+  useEffect(() => {
+    if (!open) {
+      // pequeno delay para não piscar durante a animação
+      const t = setTimeout(() => clearChat(), 200);
+      return () => clearTimeout(t);
+    }
+  }, [open]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -152,13 +172,23 @@ export const ChatWidget = () => {
                 <p className="text-[10px] opacity-90">Sua guia esperta de Petrolina</p>
               </div>
             </div>
-            <button
-              onClick={() => setOpen(false)}
-              aria-label="Fechar"
-              className="w-8 h-8 rounded-full hover:bg-background/20 flex items-center justify-center"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={clearChat}
+                aria-label="Limpar conversa"
+                title="Limpar conversa"
+                className="w-8 h-8 rounded-full hover:bg-background/20 flex items-center justify-center"
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Fechar"
+                className="w-8 h-8 rounded-full hover:bg-background/20 flex items-center justify-center"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
