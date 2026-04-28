@@ -4,6 +4,10 @@
 import univasfImg from "@/assets/univasf.jpg";
 import facapeImg from "@/assets/facape.jpg";
 import upeImg from "@/assets/upe.jpg";
+import rioRooftopImg from "@/assets/rio-rooftop-1.jpg";
+import rioRooftopFood from "@/assets/rio-rooftop-2.jpg";
+import geloSalImg from "@/assets/gelo-sal.jpg";
+import seuSalImg from "@/assets/seu-sal.jpg";
 
 export type Category =
   | "Restaurantes"
@@ -52,19 +56,50 @@ export interface Business {
 export const restaurants: Business[] = [
   {
     id: "r1",
-    name: "Piatti & Vino",
+    name: "Rio Restaurante e Rooftop",
     category: "Restaurantes",
-    subcategory: "Cozinha contemporânea",
+    subcategory: "Cozinha contemporânea • Rooftop",
     area: "Orla",
-    phone: "8738611500",
-    rating: 4.8,
-    reviews: 412,
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop",
+    phone: "8799999999",
+    rating: 4.5,
+    reviews: 372,
+    image: rioRooftopImg,
     open: true,
     tag: "Top da Orla",
+    instagram: "riorooftoppetrolina",
   },
   {
     id: "r2",
+    name: "Gelo & Sal Steakhouse",
+    category: "Restaurantes",
+    subcategory: "Steakhouse • Carnes nobres",
+    area: "Vila Eduardo",
+    phone: "8738611500",
+    rating: 4.7,
+    reviews: 540,
+    image: geloSalImg,
+    open: true,
+    tag: "Mais escolhido",
+    website: "https://geloesal.com.br/steakhouse/",
+    instagram: "geloesal",
+  },
+  {
+    id: "r3",
+    name: "Buteco Seu Sal",
+    category: "Restaurantes",
+    subcategory: "Comida de buteco • Petiscos",
+    area: "São José",
+    phone: "8799990002",
+    rating: 4.6,
+    reviews: 320,
+    image: seuSalImg,
+    open: true,
+    tag: "Mais procurado",
+    website: "https://seusal.com.br/",
+    instagram: "butecoseusal",
+  },
+  {
+    id: "r4",
     name: "Petisqueira Frigideira Nordestina",
     category: "Restaurantes",
     subcategory: "Comida regional",
@@ -72,35 +107,9 @@ export const restaurants: Business[] = [
     phone: "8799990001",
     rating: 4.6,
     reviews: 152,
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop",
+    image: rioRooftopFood,
     open: true,
     tag: "Aberto agora",
-  },
-  {
-    id: "r3",
-    name: "O Camaleão",
-    category: "Restaurantes",
-    subcategory: "Pub e restaurante",
-    area: "Centro",
-    phone: "8799990002",
-    rating: 4.5,
-    reviews: 198,
-    image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&h=400&fit=crop",
-    open: true,
-    tag: "Mais procurado",
-  },
-  {
-    id: "r4",
-    name: "Cantinho da Sopa",
-    category: "Restaurantes",
-    subcategory: "Caseiro",
-    area: "Cohab Massangano",
-    phone: "8799990003",
-    rating: 4.7,
-    reviews: 256,
-    image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=600&h=400&fit=crop",
-    open: true,
-    tag: "Promoção",
   },
 ];
 
