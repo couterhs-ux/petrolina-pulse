@@ -58,27 +58,11 @@ export const Hero = () => {
           transition: "transform 60ms linear",
         }}
       >
-        {/* Vídeo de fundo (rio São Francisco / paisagens do sertão) */}
-        <video
-          ref={videoRef}
-          src="https://cdn.coverr.co/videos/coverr-flying-over-the-river-7888/1080p.mp4"
-          poster={heroImg}
-          muted
-          playsInline
-          preload="auto"
-          autoPlay
-          loop
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            // Fallback: esconde o vídeo se falhar; a img de poster permanece via background
-            (e.currentTarget as HTMLVideoElement).style.display = "none";
-          }}
-        />
-        {/* Imagem de fallback por trás do vídeo */}
+        {/* Foto real do skyline de Petrolina às margens do Rio São Francisco */}
         <img
           src={heroImg}
-          alt="Vista aérea de Petrolina ao pôr do sol no Vale do São Francisco"
-          className="absolute inset-0 w-full h-full object-cover -z-10"
+          alt="Skyline de Petrolina visto do Rio São Francisco"
+          className="w-full h-full object-cover"
           loading="eager"
         />
         {/* Overlay com gradiente da marca */}
