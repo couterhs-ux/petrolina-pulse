@@ -8,6 +8,7 @@ import rioRooftopImg from "@/assets/rio-rooftop-1.jpg";
 import rioRooftopFood from "@/assets/rio-rooftop-2.jpg";
 import geloSalImg from "@/assets/gelo-sal.jpg";
 import seuSalImg from "@/assets/seu-sal.jpg";
+import bododromoImg from "@/assets/bododromo.jpg";
 
 export type Category =
   | "Restaurantes"
@@ -101,16 +102,17 @@ export const restaurants: Business[] = [
   },
   {
     id: "r4",
-    name: "Petisqueira Frigideira Nordestina",
+    name: "Bodódromo de Petrolina",
     category: "Restaurantes",
-    subcategory: "Comida regional",
-    area: "Av. do Petróleo",
-    phone: "8799990001",
-    rating: 4.6,
-    reviews: 152,
-    image: rioRooftopFood,
+    subcategory: "Centro Gastronômico e Cultural • Bode",
+    area: "Areia Branca",
+    phone: "8721085000",
+    rating: 4.7,
+    reviews: 980,
+    image: bododromoImg,
     open: true,
-    tag: "Aberto agora",
+    tag: "Cartão-postal",
+    description: "Polo gastronômico oficial do bode em Petrolina",
   },
 ];
 
