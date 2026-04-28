@@ -11,6 +11,7 @@ import seuSalImg from "@/assets/seu-sal.jpg";
 import bododromoImg from "@/assets/bododromo.jpg";
 import barGauchoImg from "@/assets/bar-do-gaucho.jpg";
 import mercadoTuristicoImg from "@/assets/mercado-turistico.jpg";
+import roseiralImg from "@/assets/roseiral.jpg";
 
 export type Category =
   | "Restaurantes"
