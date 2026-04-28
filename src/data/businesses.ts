@@ -10,6 +10,7 @@ import geloSalImg from "@/assets/gelo-sal.jpg";
 import seuSalImg from "@/assets/seu-sal.jpg";
 import bododromoImg from "@/assets/bododromo.jpg";
 import barGauchoImg from "@/assets/bar-do-gaucho.jpg";
+import mercadoTuristicoImg from "@/assets/mercado-turistico.jpg";
 
 export type Category =
   | "Restaurantes"
