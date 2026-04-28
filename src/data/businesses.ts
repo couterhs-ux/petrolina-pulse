@@ -65,7 +65,7 @@ export const restaurants: Business[] = [
     phone: "8799990001",
     rating: 4.6,
     reviews: 152,
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop",
     open: true,
     tag: "Aberto agora",
   },
@@ -147,7 +147,7 @@ export const delivery: Business[] = [
     area: "José e Maria",
     phone: "8788530029",
     rating: 4.5,
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1601924582970-9238bcb495d9?w=400&h=300&fit=crop",
     price: "R$ 39",
     description: "25-40 min",
   },
@@ -393,7 +393,7 @@ export const jobs: Business[] = [
 
 // ===== PROMOÇÕES =====
 export const promotions: Business[] = [
-  { id: "pr1", name: "Pizza Grande + Refri", company: "Forneto Pizzaria", category: "Delivery", area: "Atrás da Banca", price: "R$ 39,90", oldPrice: "R$ 69,90", off: "43%", ends: "Termina hoje", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop", phone: "8799990031" },
+  { id: "pr1", name: "Pizza Grande + Refri", company: "Forneto Pizzaria", category: "Delivery", area: "Atrás da Banca", price: "R$ 39,90", oldPrice: "R$ 69,90", off: "43%", ends: "Termina hoje", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop", phone: "8799990031" },
   { id: "pr2", name: "Corte + Barba", company: "Plaza Barbearia", category: "Barbearias", area: "Centro", price: "R$ 35", oldPrice: "R$ 60", off: "42%", ends: "2 dias", image: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&h=300&fit=crop", phone: "8799990010" },
   { id: "pr3", name: "Buquê de Rosas", company: "Nova Flor Petrolina", category: "Floriculturas", area: "Centro", price: "R$ 79", oldPrice: "R$ 120", off: "34%", ends: "Termina hoje", image: "https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=400&h=300&fit=crop", phone: "8799990060" },
   { id: "pr4", name: "Hambúrguer + Batata", company: "Fire Burguer", category: "Delivery", area: "Centro", price: "R$ 24", oldPrice: "R$ 38", off: "37%", ends: "5 dias", image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop", phone: "87996625361" },
@@ -422,11 +422,11 @@ export const nearby: NearbyPlace[] = [
   // Cohab Massangano
   { id: "n9", name: "Lanchonete do Zé", category: "Restaurantes", subcategory: "Lanches", area: "Cohab Massangano", lat: -9.3650, lng: -40.4950, rating: 4.4, open: true, image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300&h=300&fit=crop", phone: "8799990027" },
   // Jardim Maravilha
-  { id: "n10", name: "Pizzaria Maravilha", category: "Restaurantes", subcategory: "Pizzaria", area: "Jardim Maravilha", lat: -9.4020, lng: -40.5180, rating: 4.6, open: true, image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&h=300&fit=crop", phone: "8799990028" },
+  { id: "n10", name: "Pizzaria Maravilha", category: "Restaurantes", subcategory: "Pizzaria", area: "Jardim Maravilha", lat: -9.4020, lng: -40.5180, rating: 4.6, open: true, image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=300&h=300&fit=crop", phone: "8799990028" },
   // Dom Avelar
   { id: "n11", name: "Padaria Dom Avelar", category: "Restaurantes", subcategory: "Padaria", area: "Dom Avelar", lat: -9.4100, lng: -40.4860, rating: 4.5, open: true, image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop", phone: "8799990029" },
   // Av. do Petróleo
-  { id: "n12", name: "Petisqueira Frigideira Nordestina", category: "Restaurantes", subcategory: "Comida regional", area: "Av. do Petróleo", lat: -9.3850, lng: -40.4750, rating: 4.6, open: true, image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&h=300&fit=crop", phone: "8799990001" },
+  { id: "n12", name: "Petisqueira Frigideira Nordestina", category: "Restaurantes", subcategory: "Comida regional", area: "Av. do Petróleo", lat: -9.3850, lng: -40.4750, rating: 4.6, open: true, image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&h=300&fit=crop", phone: "8799990001" },
 ];
 
 // Coordenadas centrais por bairro (fallback caso o usuário negue geolocalização)
