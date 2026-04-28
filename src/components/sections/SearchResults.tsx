@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { BusinessLinks } from "@/components/BusinessLinks";
 import { useSearch, filterBusinesses } from "@/context/SearchContext";
 import { restaurants, barbershops, florists, colleges, events, jobs, promotions, NEIGHBORHOODS, Business } from "@/data/businesses";
 

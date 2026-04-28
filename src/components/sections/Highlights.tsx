@@ -1,6 +1,7 @@
 import { Star, MapPin, Crown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { BusinessLinks } from "@/components/BusinessLinks";
 import { restaurants } from "@/data/businesses";
 
 const highlights = restaurants;
@@ -48,6 +49,14 @@ export const Highlights = () => {
                   {h.area} • {h.reviews} avaliações
                 </div>
                 <WhatsAppButton phone={h.phone} className="w-full" label="Falar agora" />
+                <BusinessLinks
+                  name={h.name}
+                  area={h.area}
+                  instagram={h.instagram}
+                  website={h.website}
+                  maps={h.maps}
+                  className="mt-2 justify-center"
+                />
               </div>
             </article>
           ))}
