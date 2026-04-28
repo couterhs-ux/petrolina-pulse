@@ -9,6 +9,7 @@ import rioRooftopFood from "@/assets/rio-rooftop-2.jpg";
 import geloSalImg from "@/assets/gelo-sal.jpg";
 import seuSalImg from "@/assets/seu-sal.jpg";
 import bododromoImg from "@/assets/bododromo.jpg";
+import barGauchoImg from "@/assets/bar-do-gaucho.jpg";
 
 export type Category =
   | "Restaurantes"
@@ -113,6 +114,20 @@ export const restaurants: Business[] = [
     open: true,
     tag: "Cartão-postal",
     description: "Polo gastronômico oficial do bode em Petrolina",
+  },
+  {
+    id: "r5",
+    name: "Bar do Gaúcho",
+    category: "Restaurantes",
+    subcategory: "Churrascaria • Picanha",
+    area: "Areia Branca",
+    phone: "8738611991",
+    rating: 4.8,
+    reviews: 1240,
+    image: barGauchoImg,
+    open: true,
+    tag: "Desde 1991",
+    description: "A melhor picanha da região — tradição em Petrolina há mais de 30 anos",
   },
 ];
 
