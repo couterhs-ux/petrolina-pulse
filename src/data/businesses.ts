@@ -2,6 +2,7 @@
 // Dados coletados de fontes públicas (Google, sites oficiais, redes sociais).
 // Telefones podem estar desatualizados — confirme antes de usar comercialmente.
 import univasfImg from "@/assets/univasf.jpg";
+import facapeImg from "@/assets/facape.jpg";
 
 export type Category =
   | "Restaurantes"
@@ -318,7 +319,9 @@ export const colleges: Business[] = [
     courses: "Direito, Administração, Contábeis e mais",
     area: "Centro",
     phone: "8738663200",
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400&h=300&fit=crop",
+    image: facapeImg,
+    website: "https://www.facape.br",
+    instagram: "facape_oficial",
   },
   {
     id: "c3",
