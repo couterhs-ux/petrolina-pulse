@@ -2,15 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { Search, MapPin, Calendar, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSearch } from "@/context/SearchContext";
-import heroImg from "@/assets/hero-petrolina.jpg";
+import heroImg from "@/assets/hero-petrolina-real.jpg";
 
 export const Hero = () => {
   const { query, setQuery, setCategory, scrollToResults, clearFilters } = useSearch();
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Scroll sincroniza: parallax do fundo + frame do vídeo + fade do conteúdo
+  // Scroll sincroniza: parallax + zoom + fade do conteúdo
   useEffect(() => {
     let raf = 0;
     const onScroll = () => {
@@ -19,15 +18,8 @@ export const Hero = () => {
         if (!sectionRef.current) return;
         const rect = sectionRef.current.getBoundingClientRect();
         const h = rect.height || 1;
-        // 0 quando topo da seção no topo da viewport, 1 quando totalmente fora
         const p = Math.min(1, Math.max(0, -rect.top / h));
         setScrollProgress(p);
-
-        // Sincroniza o tempo do vídeo com o scroll (efeito cinematográfico)
-        const v = videoRef.current;
-        if (v && v.duration && isFinite(v.duration)) {
-          v.currentTime = Math.min(v.duration - 0.05, p * v.duration);
-        }
       });
     };
     onScroll();
@@ -66,27 +58,11 @@ export const Hero = () => {
           transition: "transform 60ms linear",
         }}
       >
-        {/* Vídeo de fundo (rio São Francisco / paisagens do sertão) */}
-        <video
-          ref={videoRef}
-          src="https://cdn.coverr.co/videos/coverr-flying-over-the-river-7888/1080p.mp4"
-          poster={heroImg}
-          muted
-          playsInline
-          preload="auto"
-          autoPlay
-          loop
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            // Fallback: esconde o vídeo se falhar; a img de poster permanece via background
-            (e.currentTarget as HTMLVideoElement).style.display = "none";
-          }}
-        />
-        {/* Imagem de fallback por trás do vídeo */}
+        {/* Foto real do skyline de Petrolina às margens do Rio São Francisco */}
         <img
           src={heroImg}
-          alt="Vista aérea de Petrolina ao pôr do sol no Vale do São Francisco"
-          className="absolute inset-0 w-full h-full object-cover -z-10"
+          alt="Skyline de Petrolina visto do Rio São Francisco"
+          className="w-full h-full object-cover"
           loading="eager"
         />
         {/* Overlay com gradiente da marca */}
