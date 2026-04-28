@@ -451,7 +451,7 @@ export const nearby: NearbyPlace[] = [
   // Centro
   { id: "n1", name: "Padaria Central", category: "Restaurantes", subcategory: "Padaria", area: "Centro", lat: -9.3895, lng: -40.5025, rating: 4.7, open: true, image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=300&fit=crop", phone: "8799990020" },
   { id: "n3", name: "Drogaria São João", category: "Restaurantes", subcategory: "Farmácia", area: "Centro", lat: -9.3880, lng: -40.5040, rating: 4.8, open: true, image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?w=300&h=300&fit=crop", phone: "8799990022" },
-  { id: "n5", name: "Mercado Central", category: "Restaurantes", subcategory: "Mercado", area: "Centro", lat: -9.3902, lng: -40.5012, rating: 4.5, open: true, image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&h=300&fit=crop", phone: "8799990024" },
+  { id: "n5", name: "Mercado Turístico de Petrolina", category: "Restaurantes", subcategory: "Artesanato & Cultura", area: "Centro", lat: -9.3902, lng: -40.5012, rating: 4.6, open: true, image: mercadoTuristicoImg, phone: "8799990024" },
   // Orla
   { id: "n6", name: "Piatti & Vino", category: "Restaurantes", subcategory: "Cozinha contemporânea", area: "Orla", lat: -9.3960, lng: -40.5095, rating: 4.8, open: true, image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=300&h=300&fit=crop", phone: "8738611500" },
   { id: "n7", name: "Quiosque do Rio", category: "Restaurantes", subcategory: "Petiscos & Vista", area: "Orla", lat: -9.3975, lng: -40.5085, rating: 4.6, open: true, image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=300&h=300&fit=crop", phone: "8799990025" },
