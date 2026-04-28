@@ -129,6 +129,7 @@ export const restaurants: Business[] = [
     tag: "Desde 1991",
     description: "A melhor picanha da região — tradição em Petrolina há mais de 30 anos",
   },
+];
 
 // ===== DELIVERY =====
 export const delivery: Business[] = [
