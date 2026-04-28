@@ -3,6 +3,7 @@
 // Telefones podem estar desatualizados — confirme antes de usar comercialmente.
 import univasfImg from "@/assets/univasf.jpg";
 import facapeImg from "@/assets/facape.jpg";
+import upeImg from "@/assets/upe.jpg";
 
 export type Category =
   | "Restaurantes"
@@ -331,7 +332,9 @@ export const colleges: Business[] = [
     courses: "Saúde e Engenharia",
     area: "BR-203",
     phone: "8721011700",
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop",
+    image: upeImg,
+    website: "https://www.upe.br/petrolina",
+    instagram: "upe_oficial",
   },
   {
     id: "c4",
