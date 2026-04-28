@@ -130,6 +130,21 @@ export const restaurants: Business[] = [
     tag: "Desde 1991",
     description: "A melhor picanha da região — tradição em Petrolina há mais de 30 anos",
   },
+  {
+    id: "r6",
+    name: "London Pub",
+    category: "Restaurantes",
+    subcategory: "Pub • Música ao vivo • Petiscos",
+    area: "Centro",
+    phone: "8799990006",
+    rating: 4.7,
+    reviews: 860,
+    image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&h=400&fit=crop",
+    open: true,
+    tag: "Destaque",
+    description: "Pub temático com música ao vivo, chopp gelado e ambiente animado",
+    instagram: "londonpubpetrolina",
+  },
 ];
 
 // ===== DELIVERY =====
