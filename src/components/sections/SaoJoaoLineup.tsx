@@ -5,7 +5,7 @@ import { toast } from "@/hooks/use-toast";
 
 type Artist = {
   name: string;
-  time: string;
+  time?: string;
   stage: "Palco Principal" | "Palco Cultural" | "Palco Sertão";
   genre: string;
   headliner?: boolean;
@@ -23,100 +23,100 @@ const lineup: Day[] = [
   {
     date: "19.JUN", iso: "2026-06-19", weekday: "Sexta", theme: "Abertura Oficial",
     artists: [
-      { name: "Leonardo", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
-      { name: "Natanzinho Lima", time: "01:30", stage: "Palco Principal", genre: "Forró" },
-      { name: "Rey Vaqueiro", time: "21:00", stage: "Palco Sertão", genre: "Forró" },
-      { name: "Seu Desejo", time: "19:30", stage: "Palco Cultural", genre: "Forró pé-de-serra" },
-      { name: "Michele Andrade", time: "22:00", stage: "Palco Sertão", genre: "Forró" },
-      { name: "PV Calado", time: "18:00", stage: "Palco Cultural", genre: "MPB Sertaneja" },
+      { name: "Leonardo", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Natanzinho Lima", stage: "Palco Principal", genre: "Forró" },
+      { name: "Rey Vaqueiro", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Seu Desejo", stage: "Palco Cultural", genre: "Forró pé-de-serra" },
+      { name: "Michele Andrade", stage: "Palco Sertão", genre: "Forró" },
+      { name: "PV Calado", stage: "Palco Cultural", genre: "MPB Sertaneja" },
     ],
   },
   {
     date: "20.JUN", iso: "2026-06-20", weekday: "Sábado", theme: "Noite Sertaneja",
     artists: [
-      { name: "Gusttavo Lima", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
-      { name: "Pablo", time: "01:30", stage: "Palco Principal", genre: "Arrocha" },
-      { name: "Zé Vaqueiro", time: "22:00", stage: "Palco Sertão", genre: "Piseiro" },
-      { name: "Jonas Esticado", time: "20:30", stage: "Palco Sertão", genre: "Forró" },
-      { name: "Toque Dez", time: "19:00", stage: "Palco Cultural", genre: "Forró" },
-      { name: "Trio Granah", time: "17:30", stage: "Palco Cultural", genre: "Forró pé-de-serra" },
+      { name: "Gusttavo Lima", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Pablo", stage: "Palco Principal", genre: "Arrocha" },
+      { name: "Zé Vaqueiro", stage: "Palco Sertão", genre: "Piseiro" },
+      { name: "Jonas Esticado", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Toque Dez", stage: "Palco Cultural", genre: "Forró" },
+      { name: "Trio Granah", stage: "Palco Cultural", genre: "Forró pé-de-serra" },
     ],
   },
   {
     date: "21.JUN", iso: "2026-06-21", weekday: "Domingo", theme: "MPB & Raízes",
     artists: [
-      { name: "Marisa Monte", time: "23:30", stage: "Palco Principal", genre: "MPB", headliner: true },
-      { name: "João Gomes", time: "01:30", stage: "Palco Principal", genre: "Piseiro" },
-      { name: "Dorgival Dantas", time: "22:00", stage: "Palco Sertão", genre: "Forró" },
-      { name: "Waldonys", time: "20:00", stage: "Palco Sertão", genre: "Forró instrumental" },
-      { name: "Lucy Alves", time: "19:00", stage: "Palco Cultural", genre: "MPB" },
-      { name: "Fabiana Santiago", time: "17:30", stage: "Palco Cultural", genre: "Forró" },
+      { name: "Marisa Monte", stage: "Palco Principal", genre: "MPB", headliner: true },
+      { name: "João Gomes", stage: "Palco Principal", genre: "Piseiro" },
+      { name: "Dorgival Dantas", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Waldonys", stage: "Palco Sertão", genre: "Forró instrumental" },
+      { name: "Lucy Alves", stage: "Palco Cultural", genre: "MPB" },
+      { name: "Fabiana Santiago", stage: "Palco Cultural", genre: "Forró" },
     ],
   },
   {
     date: "22.JUN", iso: "2026-06-22", weekday: "Segunda", theme: "Noite do Brega & Forró",
     artists: [
-      { name: "Joelma", time: "23:30", stage: "Palco Principal", genre: "Brega/Calypso", headliner: true },
-      { name: "Limão com Mel", time: "01:30", stage: "Palco Principal", genre: "Forró" },
-      { name: "Mano Walter", time: "22:00", stage: "Palco Sertão", genre: "Forró" },
-      { name: "Silvânia & Berg", time: "20:00", stage: "Palco Sertão", genre: "Forró" },
-      { name: "Filho do Piseiro", time: "19:00", stage: "Palco Cultural", genre: "Piseiro" },
-      { name: "Priscila Senna", time: "17:30", stage: "Palco Cultural", genre: "Brega" },
+      { name: "Joelma", stage: "Palco Principal", genre: "Brega/Calypso", headliner: true },
+      { name: "Limão com Mel", stage: "Palco Principal", genre: "Forró" },
+      { name: "Mano Walter", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Silvânia & Berg", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Filho do Piseiro", stage: "Palco Cultural", genre: "Piseiro" },
+      { name: "Priscila Senna", stage: "Palco Cultural", genre: "Brega" },
     ],
   },
   {
     date: "23.JUN", iso: "2026-06-23", weekday: "Terça", theme: "Véspera de São João",
     artists: [
-      { name: "Matheus Fernandes", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
-      { name: "Nattan", time: "01:30", stage: "Palco Principal", genre: "Forró" },
-      { name: "Henry Freitas", time: "22:00", stage: "Palco Sertão", genre: "Forró" },
-      { name: "Tarcísio Acordeon", time: "20:30", stage: "Palco Sertão", genre: "Forró" },
-      { name: "Hugo e Guilherme", time: "19:00", stage: "Palco Cultural", genre: "Sertanejo" },
-      { name: "Iguinho e Lulinha", time: "17:30", stage: "Palco Cultural", genre: "Forró" },
-      { name: "Pedro Libe", time: "16:00", stage: "Palco Cultural", genre: "Piseiro" },
+      { name: "Matheus Fernandes", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Nattan", stage: "Palco Principal", genre: "Forró" },
+      { name: "Henry Freitas", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Tarcísio Acordeon", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Hugo e Guilherme", stage: "Palco Cultural", genre: "Sertanejo" },
+      { name: "Iguinho e Lulinha", stage: "Palco Cultural", genre: "Forró" },
+      { name: "Pedro Libe", stage: "Palco Cultural", genre: "Piseiro" },
     ],
   },
   {
     date: "24.JUN", iso: "2026-06-24", weekday: "Quarta", theme: "Dia de São João 🔥",
     artists: [
-      { name: "Luan Santana", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
-      { name: "Ivete Sangalo", time: "01:30", stage: "Palco Principal", genre: "Axé/Pop", headliner: true },
-      { name: "Léo Santana", time: "03:30", stage: "Palco Principal", genre: "Pagodão" },
-      { name: "Mari Fernandez", time: "21:30", stage: "Palco Sertão", genre: "Forró" },
-      { name: "Vitor Fernandes", time: "19:30", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Luan Santana", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Ivete Sangalo", stage: "Palco Principal", genre: "Axé/Pop", headliner: true },
+      { name: "Léo Santana", stage: "Palco Principal", genre: "Pagodão" },
+      { name: "Mari Fernandez", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Vitor Fernandes", stage: "Palco Sertão", genre: "Forró" },
     ],
   },
   {
     date: "25.JUN", iso: "2026-06-25", weekday: "Quinta", theme: "Pagode & Sertanejo Raiz",
     artists: [
-      { name: "Xand Avião", time: "23:30", stage: "Palco Principal", genre: "Forró", headliner: true },
-      { name: "Bruno e Marrone", time: "01:30", stage: "Palco Principal", genre: "Sertanejo raiz" },
-      { name: "Thiaguinho", time: "22:00", stage: "Palco Sertão", genre: "Pagode" },
-      { name: "Felipe Amorim", time: "20:00", stage: "Palco Sertão", genre: "Forró" },
-      { name: "Lipe Lucena", time: "18:30", stage: "Palco Cultural", genre: "Piseiro" },
-      { name: "Elisson Castro", time: "17:00", stage: "Palco Cultural", genre: "Forró" },
+      { name: "Xand Avião", stage: "Palco Principal", genre: "Forró", headliner: true },
+      { name: "Bruno e Marrone", stage: "Palco Principal", genre: "Sertanejo raiz" },
+      { name: "Thiaguinho", stage: "Palco Sertão", genre: "Pagode" },
+      { name: "Felipe Amorim", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Lipe Lucena", stage: "Palco Cultural", genre: "Piseiro" },
+      { name: "Elisson Castro", stage: "Palco Cultural", genre: "Forró" },
     ],
   },
   {
     date: "26.JUN", iso: "2026-06-26", weekday: "Sexta", theme: "Noite das Divas",
     artists: [
-      { name: "Wesley Safadão", time: "23:30", stage: "Palco Principal", genre: "Forró", headliner: true },
-      { name: "Simone Mendes", time: "01:30", stage: "Palco Principal", genre: "Sertanejo" },
-      { name: "Menos é Mais", time: "22:00", stage: "Palco Sertão", genre: "Pagode" },
-      { name: "Eric Land", time: "20:00", stage: "Palco Sertão", genre: "Sofrência" },
-      { name: "Raphaela Santos", time: "18:30", stage: "Palco Cultural", genre: "Forró" },
-      { name: "Ana Costa", time: "17:00", stage: "Palco Cultural", genre: "MPB" },
+      { name: "Wesley Safadão", stage: "Palco Principal", genre: "Forró", headliner: true },
+      { name: "Simone Mendes", stage: "Palco Principal", genre: "Sertanejo" },
+      { name: "Menos é Mais", stage: "Palco Sertão", genre: "Pagode" },
+      { name: "Eric Land", stage: "Palco Sertão", genre: "Sofrência" },
+      { name: "Raphaela Santos", stage: "Palco Cultural", genre: "Forró" },
+      { name: "Ana Costa", stage: "Palco Cultural", genre: "MPB" },
     ],
   },
   {
     date: "27.JUN", iso: "2026-06-27", weekday: "Sábado", theme: "Encerramento Histórico",
     artists: [
-      { name: "Henrique e Juliano", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
-      { name: "Nattan", time: "01:30", stage: "Palco Principal", genre: "Forró" },
-      { name: "Léo Foguete", time: "22:00", stage: "Palco Sertão", genre: "Piseiro" },
-      { name: "Calcinha Preta", time: "20:00", stage: "Palco Sertão", genre: "Forró/Brega" },
-      { name: "Grelo", time: "18:30", stage: "Palco Cultural", genre: "Forró pé-de-serra" },
-      { name: "Patrick Costa", time: "17:00", stage: "Palco Cultural", genre: "Piseiro" },
+      { name: "Henrique e Juliano", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Nattan", stage: "Palco Principal", genre: "Forró" },
+      { name: "Léo Foguete", stage: "Palco Sertão", genre: "Piseiro" },
+      { name: "Calcinha Preta", stage: "Palco Sertão", genre: "Forró/Brega" },
+      { name: "Grelo", stage: "Palco Cultural", genre: "Forró pé-de-serra" },
+      { name: "Patrick Costa", stage: "Palco Cultural", genre: "Piseiro" },
     ],
   },
 ];
@@ -370,16 +370,12 @@ export const SaoJoaoLineup = () => {
                       const isFav = favs.includes(a.name);
                       return (
                         <li
-                          key={a.name + a.time}
+                          key={a.name}
                           className={`group/item rounded-xl border p-3 transition hover:border-primary/40 hover:bg-primary/5 ${
                             a.headliner ? "border-primary/30 bg-primary/5" : "border-border/60"
                           }`}
                         >
                           <div className="flex items-start gap-3">
-                            <div className="flex flex-col items-center justify-center min-w-[48px] py-1 px-2 rounded-lg bg-background border border-border">
-                              <Clock className="h-3 w-3 text-muted-foreground mb-0.5" />
-                              <span className="font-mono font-bold text-xs">{a.time}</span>
-                            </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1.5 flex-wrap">
                                 <span className={`font-bold leading-tight truncate ${a.headliner ? "text-base text-primary" : "text-sm"}`}>
