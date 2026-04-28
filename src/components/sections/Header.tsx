@@ -1,7 +1,7 @@
 import { Sun, Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const menu = ["Início", "Serviços", "Eventos", "Promoções", "Floriculturas", "Faculdades", "Empregos", "Imóveis", "Delivery", "Anunciar"];
+const menu = ["Início", "Restaurantes", "Eventos", "Promoções", "Floriculturas", "Faculdades", "Empregos", "Anunciar"];
 
 export const Header = () => {
   return (

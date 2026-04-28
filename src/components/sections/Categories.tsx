@@ -1,15 +1,13 @@
-import { Utensils, Scissors, PartyPopper, Flower2, GraduationCap, Briefcase, Home, Bike } from "lucide-react";
+import { Utensils, Scissors, PartyPopper, Flower2, GraduationCap, Briefcase } from "lucide-react";
 import { useSearch } from "@/context/SearchContext";
 
 const categories = [
   { icon: Utensils, name: "Restaurantes", color: "from-orange-500 to-red-500" },
-  { icon: Bike, name: "Delivery", color: "from-red-500 to-orange-600" },
   { icon: Scissors, name: "Barbearias", color: "from-amber-500 to-orange-600" },
   { icon: Flower2, name: "Floriculturas", color: "from-rose-400 to-pink-500" },
   { icon: PartyPopper, name: "Eventos", color: "from-pink-500 to-fuchsia-600" },
   { icon: GraduationCap, name: "Faculdades", color: "from-indigo-500 to-violet-600" },
   { icon: Briefcase, name: "Empregos", color: "from-yellow-500 to-amber-600" },
-  { icon: Home, name: "Imóveis", color: "from-green-500 to-emerald-600" },
 ];
 
 export const Categories = () => {
@@ -32,7 +30,7 @@ export const Categories = () => {
           </div>
         </div>
 
-        <div className="flex md:grid md:grid-cols-4 lg:grid-cols-8 gap-4 overflow-x-auto scrollbar-hide -mx-4 px-4 pb-2">
+        <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 overflow-x-auto scrollbar-hide -mx-4 px-4 pb-2">
           {categories.map((cat) => {
             const Icon = cat.icon;
             const active = category === cat.name;
