@@ -4,6 +4,10 @@
 import univasfImg from "@/assets/univasf.jpg";
 import facapeImg from "@/assets/facape.jpg";
 import upeImg from "@/assets/upe.jpg";
+import rioRooftopImg from "@/assets/rio-rooftop-1.jpg";
+import rioRooftopFood from "@/assets/rio-rooftop-2.jpg";
+import geloSalImg from "@/assets/gelo-sal.jpg";
+import seuSalImg from "@/assets/seu-sal.jpg";
 
 export type Category =
   | "Restaurantes"
