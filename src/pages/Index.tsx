@@ -14,6 +14,7 @@ import { Social } from "@/components/sections/Social";
 import { Footer } from "@/components/sections/Footer";
 import { BottomNav } from "@/components/sections/BottomNav";
 import { SearchProvider } from "@/context/SearchContext";
+import { ChatWidget } from "@/components/ChatWidget";
 
 const Index = () => {
   return (
@@ -36,6 +37,7 @@ const Index = () => {
         </main>
         <Footer />
         <BottomNav />
+        <ChatWidget />
       </div>
     </SearchProvider>
   );
