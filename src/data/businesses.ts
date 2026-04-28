@@ -1,6 +1,7 @@
 // Empresas reais de Petrolina - PE
 // Dados coletados de fontes públicas (Google, sites oficiais, redes sociais).
 // Telefones podem estar desatualizados — confirme antes de usar comercialmente.
+import univasfImg from "@/assets/univasf.jpg";
 
 export type Category =
   | "Restaurantes"
