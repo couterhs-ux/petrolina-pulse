@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { BusinessLinks } from "@/components/BusinessLinks";
 import { useSearch, filterBusinesses } from "@/context/SearchContext";
 import { restaurants, barbershops, florists, colleges, events, jobs, promotions, NEIGHBORHOODS, Business } from "@/data/businesses";
 
@@ -124,6 +125,14 @@ export const SearchResults = () => {
                     message={`Olá! Vim pelo Guia PNZ e quero saber sobre ${b.name}`}
                     className="w-full"
                     label="Falar agora"
+                  />
+                  <BusinessLinks
+                    name={b.name}
+                    area={b.area}
+                    instagram={b.instagram}
+                    website={b.website}
+                    maps={b.maps}
+                    className="mt-2 justify-center"
                   />
                 </div>
               </article>

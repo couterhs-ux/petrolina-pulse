@@ -39,6 +39,10 @@ export interface Business {
   date?: string;
   filter?: string;
   courses?: string;
+  // Links diretos (opcionais)
+  instagram?: string; // só o @ ou URL completa
+  website?: string;   // URL completa
+  maps?: string;      // URL completa do Google Maps (opcional — fallback gerado)
 }
 
 // ===== RESTAURANTES (destaques) =====

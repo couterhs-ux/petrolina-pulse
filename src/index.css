@@ -20,15 +20,15 @@
     --popover: 0 0% 100%;
     --popover-foreground: 25 30% 14%;
 
-    /* Laranja energia - cor principal */
-    --primary: 18 95% 54%;
+    /* Laranja energia - cor principal (mais quente e vibrante) */
+    --primary: 16 100% 52%;
     --primary-foreground: 40 38% 99%;
-    --primary-glow: 28 100% 62%;
+    --primary-glow: 28 100% 60%;
 
-    /* Verde rio São Francisco */
-    --secondary: 160 65% 38%;
+    /* Verde rio São Francisco (mais rico e vivo) */
+    --secondary: 158 78% 34%;
     --secondary-foreground: 40 38% 99%;
-    --secondary-glow: 158 70% 48%;
+    --secondary-glow: 156 82% 44%;
 
     /* Amarelo sol forte */
     --accent: 44 100% 56%;
@@ -49,21 +49,21 @@
 
     --border: 35 25% 88%;
     --input: 35 25% 88%;
-    --ring: 18 95% 54%;
+    --ring: 16 100% 52%;
 
     --radius: 1rem;
 
-    /* Gradientes */
-    --gradient-sun: linear-gradient(135deg, hsl(44 100% 56%) 0%, hsl(28 100% 58%) 50%, hsl(18 95% 54%) 100%);
-    --gradient-river: linear-gradient(135deg, hsl(160 65% 38%) 0%, hsl(180 60% 42%) 100%);
-    --gradient-vale: linear-gradient(135deg, hsl(18 95% 54%) 0%, hsl(44 100% 56%) 50%, hsl(160 65% 42%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(18 95% 54% / 0.85) 0%, hsl(28 90% 50% / 0.75) 50%, hsl(160 65% 38% / 0.85) 100%);
+    /* Gradientes — mais ricos e contrastantes */
+    --gradient-sun: linear-gradient(135deg, hsl(48 100% 58%) 0%, hsl(28 100% 56%) 50%, hsl(14 100% 50%) 100%);
+    --gradient-river: linear-gradient(135deg, hsl(158 78% 34%) 0%, hsl(176 70% 40%) 100%);
+    --gradient-vale: linear-gradient(135deg, hsl(14 100% 50%) 0%, hsl(36 100% 56%) 45%, hsl(158 78% 36%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(16 100% 52% / 0.88) 0%, hsl(28 95% 50% / 0.78) 50%, hsl(158 78% 34% / 0.88) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(40 38% 98%) 100%);
-    --gradient-premium: linear-gradient(135deg, hsl(44 100% 56%), hsl(18 95% 54%));
+    --gradient-premium: linear-gradient(135deg, hsl(48 100% 58%), hsl(14 100% 50%));
 
     /* Sombras */
-    --shadow-sun: 0 10px 30px -10px hsl(18 95% 54% / 0.35);
-    --shadow-river: 0 10px 30px -10px hsl(160 65% 38% / 0.35);
+    --shadow-sun: 0 12px 32px -10px hsl(16 100% 52% / 0.42);
+    --shadow-river: 0 12px 32px -10px hsl(158 78% 34% / 0.42);
     --shadow-soft: 0 4px 16px -4px hsl(25 30% 14% / 0.08);
     --shadow-card: 0 2px 12px -2px hsl(25 30% 14% / 0.06);
     --shadow-glow: 0 0 40px hsl(44 100% 56% / 0.4);
