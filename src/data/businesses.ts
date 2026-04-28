@@ -8,6 +8,7 @@ import rioRooftopImg from "@/assets/rio-rooftop-1.jpg";
 import rioRooftopFood from "@/assets/rio-rooftop-2.jpg";
 import geloSalImg from "@/assets/gelo-sal.jpg";
 import seuSalImg from "@/assets/seu-sal.jpg";
+import bododromoImg from "@/assets/bododromo.jpg";
 
 export type Category =
   | "Restaurantes"
