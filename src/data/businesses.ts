@@ -306,7 +306,7 @@ export const colleges: Business[] = [
     courses: "Mais de 30 cursos de graduação",
     area: "Centro / Campus",
     phone: "8721016700",
-    image: "/src/assets/univasf.jpg",
+    image: univasfImg,
     website: "https://portais.univasf.edu.br",
     instagram: "univasf_oficial",
   },
