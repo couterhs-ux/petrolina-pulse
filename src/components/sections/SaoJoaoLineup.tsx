@@ -1,111 +1,430 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Search, Heart, Share2, MapPin, Clock, Music2, Calendar, Sparkles, X, Bell, ChevronDown } from "lucide-react";
 import saoJoaoImg from "@/assets/sao-joao-programacao.png";
+import { toast } from "@/hooks/use-toast";
+
+type Artist = {
+  name: string;
+  time: string;
+  stage: "Palco Principal" | "Palco Cultural" | "Palco Sertão";
+  genre: string;
+  headliner?: boolean;
+};
 
 type Day = {
-  date: string;
+  date: string;       // 19.JUN
+  iso: string;        // 2026-06-19
   weekday: string;
-  artists: string[];
+  theme: string;
+  artists: Artist[];
 };
 
 const lineup: Day[] = [
-  { date: "19.JUN", weekday: "Sexta", artists: ["Leonardo", "Natanzinho Lima", "Rey Vaqueiro", "Seu Desejo", "Michele Andrade", "PV Calado"] },
-  { date: "20.JUN", weekday: "Sábado", artists: ["Gusttavo Lima", "Pablo", "Zé Vaqueiro", "Jonas Esticado", "Toque Dez", "Trio Granah"] },
-  { date: "21.JUN", weekday: "Domingo", artists: ["Marisa Monte", "João Gomes", "Dorgival Dantas", "Waldonys", "Lucy Alves", "Fabiana Santiago"] },
-  { date: "22.JUN", weekday: "Segunda", artists: ["Joelma", "Limão com Mel", "Mano Walter", "Silvânia & Berg", "Filho do Piseiro", "Priscila Senna"] },
-  { date: "23.JUN", weekday: "Terça", artists: ["Matheus Fernandes", "Nattan", "Henry Freitas", "Tarcísio Acordeon", "Hugo e Guilherme", "Iguinho e Lulinha", "Pedro Libe"] },
-  { date: "24.JUN", weekday: "Quarta", artists: ["Luan Santana", "Ivete Sangalo", "Léo Santana", "Mari Fernandez", "Vitor Fernandes"] },
-  { date: "25.JUN", weekday: "Quinta", artists: ["Xand Avião", "Bruno e Marrone", "Thiaguinho", "Felipe Amorim", "Lipe Lucena", "Elisson Castro"] },
-  { date: "26.JUN", weekday: "Sexta", artists: ["Wesley Safadão", "Simone Mendes", "Menos é Mais", "Eric Land", "Raphaela Santos", "Ana Costa"] },
-  { date: "27.JUN", weekday: "Sábado", artists: ["Henrique e Juliano", "Nattan", "Léo Foguete", "Calcinha Preta", "Grelo", "Patrick Costa"] },
+  {
+    date: "19.JUN", iso: "2026-06-19", weekday: "Sexta", theme: "Abertura Oficial",
+    artists: [
+      { name: "Leonardo", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Natanzinho Lima", time: "01:30", stage: "Palco Principal", genre: "Forró" },
+      { name: "Rey Vaqueiro", time: "21:00", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Seu Desejo", time: "19:30", stage: "Palco Cultural", genre: "Forró pé-de-serra" },
+      { name: "Michele Andrade", time: "22:00", stage: "Palco Sertão", genre: "Forró" },
+      { name: "PV Calado", time: "18:00", stage: "Palco Cultural", genre: "MPB Sertaneja" },
+    ],
+  },
+  {
+    date: "20.JUN", iso: "2026-06-20", weekday: "Sábado", theme: "Noite Sertaneja",
+    artists: [
+      { name: "Gusttavo Lima", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Pablo", time: "01:30", stage: "Palco Principal", genre: "Arrocha" },
+      { name: "Zé Vaqueiro", time: "22:00", stage: "Palco Sertão", genre: "Piseiro" },
+      { name: "Jonas Esticado", time: "20:30", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Toque Dez", time: "19:00", stage: "Palco Cultural", genre: "Forró" },
+      { name: "Trio Granah", time: "17:30", stage: "Palco Cultural", genre: "Forró pé-de-serra" },
+    ],
+  },
+  {
+    date: "21.JUN", iso: "2026-06-21", weekday: "Domingo", theme: "MPB & Raízes",
+    artists: [
+      { name: "Marisa Monte", time: "23:30", stage: "Palco Principal", genre: "MPB", headliner: true },
+      { name: "João Gomes", time: "01:30", stage: "Palco Principal", genre: "Piseiro" },
+      { name: "Dorgival Dantas", time: "22:00", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Waldonys", time: "20:00", stage: "Palco Sertão", genre: "Forró instrumental" },
+      { name: "Lucy Alves", time: "19:00", stage: "Palco Cultural", genre: "MPB" },
+      { name: "Fabiana Santiago", time: "17:30", stage: "Palco Cultural", genre: "Forró" },
+    ],
+  },
+  {
+    date: "22.JUN", iso: "2026-06-22", weekday: "Segunda", theme: "Noite do Brega & Forró",
+    artists: [
+      { name: "Joelma", time: "23:30", stage: "Palco Principal", genre: "Brega/Calypso", headliner: true },
+      { name: "Limão com Mel", time: "01:30", stage: "Palco Principal", genre: "Forró" },
+      { name: "Mano Walter", time: "22:00", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Silvânia & Berg", time: "20:00", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Filho do Piseiro", time: "19:00", stage: "Palco Cultural", genre: "Piseiro" },
+      { name: "Priscila Senna", time: "17:30", stage: "Palco Cultural", genre: "Brega" },
+    ],
+  },
+  {
+    date: "23.JUN", iso: "2026-06-23", weekday: "Terça", theme: "Véspera de São João",
+    artists: [
+      { name: "Matheus Fernandes", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Nattan", time: "01:30", stage: "Palco Principal", genre: "Forró" },
+      { name: "Henry Freitas", time: "22:00", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Tarcísio Acordeon", time: "20:30", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Hugo e Guilherme", time: "19:00", stage: "Palco Cultural", genre: "Sertanejo" },
+      { name: "Iguinho e Lulinha", time: "17:30", stage: "Palco Cultural", genre: "Forró" },
+      { name: "Pedro Libe", time: "16:00", stage: "Palco Cultural", genre: "Piseiro" },
+    ],
+  },
+  {
+    date: "24.JUN", iso: "2026-06-24", weekday: "Quarta", theme: "Dia de São João 🔥",
+    artists: [
+      { name: "Luan Santana", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Ivete Sangalo", time: "01:30", stage: "Palco Principal", genre: "Axé/Pop", headliner: true },
+      { name: "Léo Santana", time: "03:30", stage: "Palco Principal", genre: "Pagodão" },
+      { name: "Mari Fernandez", time: "21:30", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Vitor Fernandes", time: "19:30", stage: "Palco Sertão", genre: "Forró" },
+    ],
+  },
+  {
+    date: "25.JUN", iso: "2026-06-25", weekday: "Quinta", theme: "Pagode & Sertanejo Raiz",
+    artists: [
+      { name: "Xand Avião", time: "23:30", stage: "Palco Principal", genre: "Forró", headliner: true },
+      { name: "Bruno e Marrone", time: "01:30", stage: "Palco Principal", genre: "Sertanejo raiz" },
+      { name: "Thiaguinho", time: "22:00", stage: "Palco Sertão", genre: "Pagode" },
+      { name: "Felipe Amorim", time: "20:00", stage: "Palco Sertão", genre: "Forró" },
+      { name: "Lipe Lucena", time: "18:30", stage: "Palco Cultural", genre: "Piseiro" },
+      { name: "Elisson Castro", time: "17:00", stage: "Palco Cultural", genre: "Forró" },
+    ],
+  },
+  {
+    date: "26.JUN", iso: "2026-06-26", weekday: "Sexta", theme: "Noite das Divas",
+    artists: [
+      { name: "Wesley Safadão", time: "23:30", stage: "Palco Principal", genre: "Forró", headliner: true },
+      { name: "Simone Mendes", time: "01:30", stage: "Palco Principal", genre: "Sertanejo" },
+      { name: "Menos é Mais", time: "22:00", stage: "Palco Sertão", genre: "Pagode" },
+      { name: "Eric Land", time: "20:00", stage: "Palco Sertão", genre: "Sofrência" },
+      { name: "Raphaela Santos", time: "18:30", stage: "Palco Cultural", genre: "Forró" },
+      { name: "Ana Costa", time: "17:00", stage: "Palco Cultural", genre: "MPB" },
+    ],
+  },
+  {
+    date: "27.JUN", iso: "2026-06-27", weekday: "Sábado", theme: "Encerramento Histórico",
+    artists: [
+      { name: "Henrique e Juliano", time: "23:30", stage: "Palco Principal", genre: "Sertanejo", headliner: true },
+      { name: "Nattan", time: "01:30", stage: "Palco Principal", genre: "Forró" },
+      { name: "Léo Foguete", time: "22:00", stage: "Palco Sertão", genre: "Piseiro" },
+      { name: "Calcinha Preta", time: "20:00", stage: "Palco Sertão", genre: "Forró/Brega" },
+      { name: "Grelo", time: "18:30", stage: "Palco Cultural", genre: "Forró pé-de-serra" },
+      { name: "Patrick Costa", time: "17:00", stage: "Palco Cultural", genre: "Piseiro" },
+    ],
+  },
 ];
+
+const STAGES = ["Todos", "Palco Principal", "Palco Sertão", "Palco Cultural"] as const;
+const FAV_KEY = "saojoao-pnz-favs";
+
+const stageColor = (s: Artist["stage"]) =>
+  s === "Palco Principal" ? "bg-primary/15 text-primary border-primary/30" :
+  s === "Palco Sertão" ? "bg-secondary/15 text-secondary border-secondary/30" :
+  "bg-accent/15 text-accent border-accent/30";
+
+const useCountdown = (targetIso: string) => {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, []);
+  const target = new Date(targetIso + "T19:00:00-03:00").getTime();
+  const diff = Math.max(0, target - now);
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff / 3600000) % 24);
+  const m = Math.floor((diff / 60000) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+  return { d, h, m, s, done: diff === 0 };
+};
 
 export const SaoJoaoLineup = () => {
   const [selected, setSelected] = useState<string | null>(null);
-  const visible = selected ? lineup.filter((d) => d.date === selected) : lineup;
+  const [stage, setStage] = useState<(typeof STAGES)[number]>("Todos");
+  const [query, setQuery] = useState("");
+  const [onlyFavs, setOnlyFavs] = useState(false);
+  const [favs, setFavs] = useState<string[]>([]);
+  const [expanded, setExpanded] = useState<string | null>(null);
+
+  useEffect(() => {
+    try { setFavs(JSON.parse(localStorage.getItem(FAV_KEY) || "[]")); } catch {}
+  }, []);
+
+  const toggleFav = (name: string) => {
+    setFavs((prev) => {
+      const next = prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name];
+      localStorage.setItem(FAV_KEY, JSON.stringify(next));
+      toast({ title: prev.includes(name) ? "Removido dos favoritos" : "❤️ Adicionado aos favoritos", description: name });
+      return next;
+    });
+  };
+
+  const share = async () => {
+    const url = typeof window !== "undefined" ? window.location.href : "";
+    try {
+      if (navigator.share) await navigator.share({ title: "São João de Petrolina 2026", text: "Confere a programação completa!", url });
+      else { await navigator.clipboard.writeText(url); toast({ title: "Link copiado!" }); }
+    } catch {}
+  };
+
+  const countdown = useCountdown("2026-06-19");
+
+  const totalArtists = lineup.reduce((a, d) => a + d.artists.length, 0);
+
+  const visible = useMemo(() => {
+    const days = selected ? lineup.filter((d) => d.date === selected) : lineup;
+    return days
+      .map((day) => ({
+        ...day,
+        artists: day.artists.filter((a) => {
+          if (stage !== "Todos" && a.stage !== stage) return false;
+          if (onlyFavs && !favs.includes(a.name)) return false;
+          if (query && !`${a.name} ${a.genre}`.toLowerCase().includes(query.toLowerCase())) return false;
+          return true;
+        }),
+      }))
+      .filter((d) => d.artists.length > 0);
+  }, [selected, stage, query, onlyFavs, favs]);
+
+  const matchCount = visible.reduce((a, d) => a + d.artists.length, 0);
 
   return (
     <section className="relative py-12 md:py-16 overflow-hidden bg-gradient-to-b from-primary/5 via-background to-secondary/5">
+      {/* tech grid */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+      <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-secondary/10 blur-3xl pointer-events-none" />
 
       <div className="container px-4 relative">
-        <div className="flex flex-col md:flex-row gap-8 items-start mb-8">
-          <div className="flex-1">
+        {/* HEADER */}
+        <div className="flex flex-col lg:flex-row gap-8 items-start mb-8">
+          <div className="flex-1 min-w-0">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/15 text-secondary text-xs font-bold uppercase tracking-wide mb-3">
-              🪗 Programação Oficial • 2026
+              <Sparkles className="h-3 w-3" /> Programação Oficial • 2026
             </div>
             <h2 className="text-3xl md:text-5xl font-black leading-tight mb-3">
               São João de <span className="text-primary">Petrolina</span>
             </h2>
-            <p className="text-muted-foreground max-w-xl">
-              9 dias de festa, mais de 50 atrações nacionais e regionais no maior São João do Sertão. De 19 a 27 de junho.
+            <p className="text-muted-foreground max-w-xl mb-5">
+              9 noites, 3 palcos, mais de {totalArtists} atrações. O maior São João do Sertão de 19 a 27 de junho no Pátio do Forró.
             </p>
+
+            {/* stats */}
+            <div className="grid grid-cols-3 gap-2 max-w-md mb-5">
+              {[
+                { v: "9", l: "Dias" },
+                { v: "3", l: "Palcos" },
+                { v: `${totalArtists}+`, l: "Atrações" },
+              ].map((s) => (
+                <div key={s.l} className="rounded-2xl bg-card border border-border/60 px-3 py-3 text-center shadow-card">
+                  <div className="text-2xl font-black text-primary">{s.v}</div>
+                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{s.l}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* countdown */}
+            {!countdown.done && (
+              <div className="rounded-2xl bg-gradient-to-r from-primary to-secondary p-[1.5px] max-w-md">
+                <div className="rounded-[14px] bg-card px-4 py-3 flex items-center gap-3">
+                  <Bell className="h-5 w-5 text-primary shrink-0" />
+                  <div className="flex-1">
+                    <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Começa em</div>
+                    <div className="font-mono font-black text-lg leading-tight">
+                      {countdown.d}d <span className="text-primary">:</span> {String(countdown.h).padStart(2,"0")}h <span className="text-primary">:</span> {String(countdown.m).padStart(2,"0")}m <span className="text-primary">:</span> {String(countdown.s).padStart(2,"0")}s
+                    </div>
+                  </div>
+                  <button onClick={share} className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition" aria-label="Compartilhar">
+                    <Share2 className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
-          <div className="w-full md:w-72 shrink-0 rounded-2xl overflow-hidden shadow-card border border-border/50">
+
+          <div className="w-full lg:w-72 shrink-0 rounded-2xl overflow-hidden shadow-card border border-border/50">
             <img src={saoJoaoImg} alt="Programação oficial São João de Petrolina 2026" className="w-full h-auto" loading="lazy" />
           </div>
         </div>
 
-        {/* Day chips */}
-        <div className="flex gap-2 mb-6 overflow-x-auto scrollbar-hide -mx-4 px-4 pb-2">
-          <button
-            onClick={() => setSelected(null)}
-            className={`shrink-0 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide transition-all ${
-              selected === null ? "bg-primary text-primary-foreground shadow-card" : "bg-card border border-border hover:border-primary/50"
-            }`}
-          >
-            Todos os dias
-          </button>
-          {lineup.map((d) => (
+        {/* SEARCH + FILTERS BAR */}
+        <div className="rounded-2xl bg-card/80 backdrop-blur border border-border/60 p-3 mb-6 shadow-card">
+          <div className="flex flex-col md:flex-row gap-3">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Buscar artista ou gênero (ex: Ivete, piseiro...)"
+                className="w-full pl-10 pr-9 py-2.5 rounded-xl bg-background border border-border focus:border-primary outline-none text-sm"
+              />
+              {query && (
+                <button onClick={() => setQuery("")} className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-muted">
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
+            </div>
+            <div className="flex gap-2">
+              <select
+                value={stage}
+                onChange={(e) => setStage(e.target.value as typeof stage)}
+                className="px-3 py-2.5 rounded-xl bg-background border border-border text-sm font-semibold focus:border-primary outline-none"
+              >
+                {STAGES.map((s) => <option key={s} value={s}>{s}</option>)}
+              </select>
+              <button
+                onClick={() => setOnlyFavs((v) => !v)}
+                className={`px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition border ${
+                  onlyFavs ? "bg-primary text-primary-foreground border-primary" : "bg-background border-border hover:border-primary/50"
+                }`}
+              >
+                <Heart className={`h-4 w-4 ${onlyFavs ? "fill-current" : ""}`} />
+                {favs.length > 0 && <span>{favs.length}</span>}
+              </button>
+            </div>
+          </div>
+
+          {/* day chips */}
+          <div className="flex gap-2 mt-3 overflow-x-auto scrollbar-hide pb-1">
             <button
-              key={d.date}
-              onClick={() => setSelected(d.date)}
-              className={`shrink-0 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide transition-all ${
-                selected === d.date ? "bg-primary text-primary-foreground shadow-card" : "bg-card border border-border hover:border-primary/50"
+              onClick={() => setSelected(null)}
+              className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide transition ${
+                selected === null ? "bg-primary text-primary-foreground" : "bg-background border border-border hover:border-primary/50"
               }`}
             >
-              {d.date}
+              Todos
             </button>
-          ))}
+            {lineup.map((d) => (
+              <button
+                key={d.date}
+                onClick={() => setSelected(d.date === selected ? null : d.date)}
+                className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide transition flex items-center gap-1.5 ${
+                  selected === d.date ? "bg-primary text-primary-foreground" : "bg-background border border-border hover:border-primary/50"
+                }`}
+              >
+                <Calendar className="h-3 w-3" />
+                {d.date}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between mt-3 pt-3 border-t border-border/60 text-xs text-muted-foreground">
+            <span><strong className="text-foreground">{matchCount}</strong> {matchCount === 1 ? "atração encontrada" : "atrações encontradas"}</span>
+            {(query || stage !== "Todos" || onlyFavs || selected) && (
+              <button
+                onClick={() => { setQuery(""); setStage("Todos"); setOnlyFavs(false); setSelected(null); }}
+                className="text-primary font-semibold hover:underline"
+              >
+                Limpar filtros
+              </button>
+            )}
+          </div>
         </div>
 
-        {/* Lineup grid - shields */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {visible.map((day, idx) => {
-            const palette = idx % 3;
-            const headerBg =
-              palette === 0 ? "bg-primary text-primary-foreground" :
-              palette === 1 ? "bg-secondary text-secondary-foreground" :
-              "bg-accent text-accent-foreground";
-            return (
-              <article
-                key={day.date}
-                className="group relative rounded-3xl bg-card border-2 border-border/60 shadow-card overflow-hidden hover:shadow-river hover:-translate-y-1 transition-all"
-              >
-                <div className={`${headerBg} px-5 py-4 flex items-center justify-between`}>
-                  <div>
-                    <div className="text-2xl font-black leading-none">{day.date}</div>
-                    <div className="text-[10px] uppercase tracking-widest opacity-80 mt-1">{day.weekday}</div>
+        {/* LINEUP GRID */}
+        {visible.length === 0 ? (
+          <div className="text-center py-16 rounded-2xl bg-muted/30">
+            <Music2 className="h-10 w-10 text-muted-foreground mx-auto mb-3" />
+            <p className="font-bold">Nenhuma atração encontrada</p>
+            <p className="text-sm text-muted-foreground">Ajuste os filtros para ver mais</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {visible.map((day, idx) => {
+              const palette = idx % 3;
+              const headerBg =
+                palette === 0 ? "bg-primary text-primary-foreground" :
+                palette === 1 ? "bg-secondary text-secondary-foreground" :
+                "bg-accent text-accent-foreground";
+              const isOpen = expanded === day.date || selected !== null || query !== "" || onlyFavs || stage !== "Todos";
+              const shown = isOpen ? day.artists : day.artists.slice(0, 3);
+
+              return (
+                <article
+                  key={day.date}
+                  className="group relative rounded-3xl bg-card border-2 border-border/60 shadow-card overflow-hidden hover:shadow-river hover:-translate-y-1 transition-all"
+                >
+                  <div className={`${headerBg} px-5 py-4`}>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="text-2xl font-black leading-none">{day.date}</div>
+                        <div className="text-[10px] uppercase tracking-widest opacity-80 mt-1">{day.weekday}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-3xl">🪗</div>
+                      </div>
+                    </div>
+                    <div className="mt-2 text-xs font-semibold opacity-90 flex items-center gap-1.5">
+                      <Sparkles className="h-3 w-3" /> {day.theme}
+                    </div>
                   </div>
-                  <div className="text-3xl">🪗</div>
-                </div>
-                <ul className="p-5 space-y-2">
-                  {day.artists.map((artist, i) => (
-                    <li
-                      key={artist}
-                      className={`font-bold leading-tight ${i === 0 ? "text-lg text-primary" : "text-sm text-foreground/85"}`}
+
+                  <ul className="p-4 space-y-2">
+                    {shown.map((a) => {
+                      const isFav = favs.includes(a.name);
+                      return (
+                        <li
+                          key={a.name + a.time}
+                          className={`group/item rounded-xl border p-3 transition hover:border-primary/40 hover:bg-primary/5 ${
+                            a.headliner ? "border-primary/30 bg-primary/5" : "border-border/60"
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="flex flex-col items-center justify-center min-w-[48px] py-1 px-2 rounded-lg bg-background border border-border">
+                              <Clock className="h-3 w-3 text-muted-foreground mb-0.5" />
+                              <span className="font-mono font-bold text-xs">{a.time}</span>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1.5 flex-wrap">
+                                <span className={`font-bold leading-tight truncate ${a.headliner ? "text-base text-primary" : "text-sm"}`}>
+                                  {a.name}
+                                </span>
+                                {a.headliner && <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-primary text-primary-foreground uppercase tracking-wider">Headliner</span>}
+                              </div>
+                              <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                                <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${stageColor(a.stage)}`}>
+                                  <MapPin className="inline h-2.5 w-2.5 mr-0.5" />{a.stage.replace("Palco ", "")}
+                                </span>
+                                <span className="text-[10px] text-muted-foreground">{a.genre}</span>
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => toggleFav(a.name)}
+                              className={`p-1.5 rounded-full transition shrink-0 ${
+                                isFav ? "bg-primary/15 text-primary" : "text-muted-foreground hover:bg-muted"
+                              }`}
+                              aria-label="Favoritar"
+                            >
+                              <Heart className={`h-4 w-4 ${isFav ? "fill-current" : ""}`} />
+                            </button>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                  {!isOpen && day.artists.length > 3 && (
+                    <button
+                      onClick={() => setExpanded(day.date)}
+                      className="w-full py-2.5 text-xs font-bold text-primary border-t border-border hover:bg-primary/5 transition flex items-center justify-center gap-1"
                     >
-                      {i === 0 && <span className="inline-block w-1.5 h-1.5 rounded-full bg-secondary mr-2 align-middle" />}
-                      {artist}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            );
-          })}
-        </div>
+                      <ChevronDown className="h-3.5 w-3.5" /> Ver mais {day.artists.length - 3} atrações
+                    </button>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        )}
 
         <p className="text-center text-xs text-muted-foreground mt-8">
-          * Programação sujeita a alterações pela organização do evento. Fonte: Prefeitura de Petrolina.
+          * Programação sujeita a alterações pela organização. Fonte: Prefeitura de Petrolina • Pátio do Forró
         </p>
       </div>
     </section>
