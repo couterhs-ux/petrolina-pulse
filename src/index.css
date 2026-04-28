@@ -56,8 +56,8 @@
     /* Gradientes — mais ricos e contrastantes */
     --gradient-sun: linear-gradient(135deg, hsl(48 100% 58%) 0%, hsl(28 100% 56%) 50%, hsl(14 100% 50%) 100%);
     --gradient-river: linear-gradient(135deg, hsl(158 78% 34%) 0%, hsl(176 70% 40%) 100%);
-    --gradient-vale: linear-gradient(135deg, hsl(14 100% 50%) 0%, hsl(36 100% 56%) 45%, hsl(158 78% 36%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(16 100% 52% / 0.88) 0%, hsl(28 95% 50% / 0.78) 50%, hsl(158 78% 34% / 0.88) 100%);
+    --gradient-vale: linear-gradient(135deg, hsl(14 100% 50%) 0%, hsl(36 100% 56%) 35%, hsl(158 78% 36%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(16 100% 52% / 0.78) 0%, hsl(28 90% 48% / 0.55) 35%, hsl(170 75% 32% / 0.72) 70%, hsl(158 80% 28% / 0.88) 100%);
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(40 38% 98%) 100%);
     --gradient-premium: linear-gradient(135deg, hsl(48 100% 58%), hsl(14 100% 50%));
 
