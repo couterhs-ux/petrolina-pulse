@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Search, MapPin, Calendar, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSearch } from "@/context/SearchContext";
-import heroImg from "@/assets/hero-petrolina.jpg";
+import heroImg from "@/assets/hero-petrolina-real.jpg";
 
 export const Hero = () => {
   const { query, setQuery, setCategory, scrollToResults, clearFilters } = useSearch();
