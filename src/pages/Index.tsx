@@ -4,6 +4,7 @@ import { Categories } from "@/components/sections/Categories";
 import { SearchResults } from "@/components/sections/SearchResults";
 import { Highlights } from "@/components/sections/Highlights";
 import { Events } from "@/components/sections/Events";
+import { SaoJoaoLineup } from "@/components/sections/SaoJoaoLineup";
 import { Promotions } from "@/components/sections/Promotions";
 import { NearYou } from "@/components/sections/NearYou";
 import { Jobs } from "@/components/sections/Jobs";
@@ -26,6 +27,7 @@ const Index = () => {
           <Categories />
           <SearchResults />
           <Highlights />
+          <SaoJoaoLineup />
           <Events />
           <Promotions />
           <NearYou />
