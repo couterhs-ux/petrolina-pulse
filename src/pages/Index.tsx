@@ -6,9 +6,7 @@ import { Highlights } from "@/components/sections/Highlights";
 import { Events } from "@/components/sections/Events";
 import { Promotions } from "@/components/sections/Promotions";
 import { NearYou } from "@/components/sections/NearYou";
-import { Delivery } from "@/components/sections/Delivery";
 import { Jobs } from "@/components/sections/Jobs";
-import { Properties } from "@/components/sections/Properties";
 import { Florists } from "@/components/sections/Florists";
 import { Colleges } from "@/components/sections/Colleges";
 import { CTA } from "@/components/sections/CTA";
@@ -30,9 +28,7 @@ const Index = () => {
           <Events />
           <Promotions />
           <NearYou />
-          <Delivery />
           <Jobs />
-          <Properties />
           <Florists />
           <Colleges />
           <CTA />

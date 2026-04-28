@@ -1,11 +1,11 @@
-import { Home, Search, Calendar, Flame, Rocket } from "lucide-react";
+import { Home, Search, Calendar, Flame, Briefcase } from "lucide-react";
 
 const items = [
   { icon: Home, label: "Início", active: true },
   { icon: Search, label: "Buscar" },
   { icon: Calendar, label: "Eventos" },
   { icon: Flame, label: "Promos" },
-  { icon: Rocket, label: "Anunciar" },
+  { icon: Briefcase, label: "Vagas" },
 ];
 
 export const BottomNav = () => {

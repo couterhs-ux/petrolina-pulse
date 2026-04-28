@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { useSearch, filterBusinesses } from "@/context/SearchContext";
-import { restaurants, delivery, barbershops, florists, properties, colleges, NEIGHBORHOODS, Business } from "@/data/businesses";
+import { restaurants, barbershops, florists, colleges, events, jobs, promotions, NEIGHBORHOODS, Business } from "@/data/businesses";
 
-const ALL: Business[] = [...restaurants, ...delivery, ...barbershops, ...florists, ...properties, ...colleges];
+const ALL: Business[] = [...restaurants, ...barbershops, ...florists, ...colleges, ...events, ...jobs, ...promotions];
 
 export const SearchResults = () => {
   const { query, neighborhood, category, sortBy, setNeighborhood, setSortBy, clearFilters, resultsRef } = useSearch();
