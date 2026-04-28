@@ -7,10 +7,9 @@ import heroImg from "@/assets/hero-petrolina-real.jpg";
 export const Hero = () => {
   const { query, setQuery, setCategory, scrollToResults, clearFilters } = useSearch();
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Scroll sincroniza: parallax do fundo + frame do vídeo + fade do conteúdo
+  // Scroll sincroniza: parallax + zoom + fade do conteúdo
   useEffect(() => {
     let raf = 0;
     const onScroll = () => {
@@ -19,15 +18,8 @@ export const Hero = () => {
         if (!sectionRef.current) return;
         const rect = sectionRef.current.getBoundingClientRect();
         const h = rect.height || 1;
-        // 0 quando topo da seção no topo da viewport, 1 quando totalmente fora
         const p = Math.min(1, Math.max(0, -rect.top / h));
         setScrollProgress(p);
-
-        // Sincroniza o tempo do vídeo com o scroll (efeito cinematográfico)
-        const v = videoRef.current;
-        if (v && v.duration && isFinite(v.duration)) {
-          v.currentTime = Math.min(v.duration - 0.05, p * v.duration);
-        }
       });
     };
     onScroll();
