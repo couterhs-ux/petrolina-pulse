@@ -126,6 +126,14 @@ export const SearchResults = () => {
                     className="w-full"
                     label="Falar agora"
                   />
+                  <BusinessLinks
+                    name={b.name}
+                    area={b.area}
+                    instagram={b.instagram}
+                    website={b.website}
+                    maps={b.maps}
+                    className="mt-2 justify-center"
+                  />
                 </div>
               </article>
             ))}

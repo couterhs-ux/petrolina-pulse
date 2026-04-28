@@ -1,6 +1,7 @@
 import { GraduationCap, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { BusinessLinks } from "@/components/BusinessLinks";
 import { colleges } from "@/data/businesses";
 
 export const Colleges = () => {
@@ -30,6 +31,7 @@ export const Colleges = () => {
                   <BookOpen className="h-4 w-4 shrink-0 mt-0.5" />{c.courses}
                 </p>
                 <WhatsAppButton phone={c.phone} message={`Olá! Quero saber mais sobre ${c.name}`} className="w-full" label="Falar com a instituição" />
+                <BusinessLinks name={c.name} area={c.area} instagram={c.instagram} website={c.website} maps={c.maps} className="mt-2 justify-center" />
               </div>
             </article>
           ))}
