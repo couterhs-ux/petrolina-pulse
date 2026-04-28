@@ -7,12 +7,12 @@ const menu = ["Início", "Restaurantes", "Eventos", "Promoções", "Floricultura
 export const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-lg border-b border-border">
-      <div className="container px-4 h-14 flex items-center justify-between gap-4">
-        <a href="/" className="flex items-center gap-2 shrink-0">
-          <img src={logoPnz} alt="Guia PNZ - Viva Petrolina" width={36} height={36} className="w-9 h-9 rounded-xl object-cover shadow-sun" />
+      <div className="container px-4 h-16 md:h-20 flex items-center justify-between gap-4">
+        <a href="/" className="flex items-center gap-2.5 shrink-0">
+          <img src={logoPnz} alt="Guia PNZ - Viva Petrolina" width={56} height={56} className="w-12 h-12 md:w-14 md:h-14 rounded-2xl object-cover shadow-sun" />
           <div className="hidden sm:block">
-            <p className="font-black text-base leading-none">Guia PNZ</p>
-            <p className="text-[10px] text-muted-foreground leading-tight">Viva Petrolina</p>
+            <p className="font-black text-lg md:text-xl leading-none">Guia PNZ</p>
+            <p className="text-[11px] md:text-xs text-muted-foreground leading-tight mt-0.5">Viva Petrolina</p>
           </div>
         </a>
 
