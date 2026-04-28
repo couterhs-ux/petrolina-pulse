@@ -1,8 +1,23 @@
 import { Search, MapPin, Calendar, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSearch } from "@/context/SearchContext";
 import heroImg from "@/assets/hero-petrolina.jpg";
 
 export const Hero = () => {
+  const { query, setQuery, setCategory, scrollToResults, clearFilters } = useSearch();
+
+  const handleSearch = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    scrollToResults();
+  };
+
+  const quickFilter = (cat: string | null, q: string = "") => {
+    clearFilters();
+    setQuery(q);
+    setCategory(cat);
+    scrollToResults();
+  };
+
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
@@ -32,35 +47,55 @@ export const Hero = () => {
             O guia completo da cidade. Achados, eventos, promoções e muito mais 🔥
           </p>
 
-          <div className="relative max-w-xl mx-auto mb-6 animate-scale-in">
+          <form onSubmit={handleSearch} className="relative max-w-xl mx-auto mb-6 animate-scale-in">
             <div className="relative bg-card rounded-2xl shadow-sun p-2 flex items-center gap-2">
               <Search className="h-5 w-5 text-muted-foreground ml-3 shrink-0" />
               <input
                 type="text"
-                placeholder="Restaurante, evento, emprego..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Pizza, barbearia, UNIVASF, Orla..."
                 className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground py-3 outline-none text-sm md:text-base"
               />
-              <Button size="sm" className="rounded-xl gradient-sun text-primary-foreground border-0 font-semibold hidden sm:inline-flex">
+              <Button
+                type="submit"
+                size="sm"
+                className="rounded-xl gradient-sun text-primary-foreground border-0 font-semibold hidden sm:inline-flex"
+              >
                 Buscar
               </Button>
             </div>
-          </div>
+          </form>
 
           <div className="flex flex-wrap items-center justify-center gap-2 animate-fade-in-up">
-            <Button variant="outline" size="sm" className="rounded-full bg-background/20 backdrop-blur-sm border-primary-foreground/40 text-primary-foreground hover:bg-background/30 hover:text-primary-foreground gap-2">
-              <Calendar className="h-4 w-4" /> Eventos hoje
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => quickFilter("Eventos")}
+              className="rounded-full bg-background/20 backdrop-blur-sm border-primary-foreground/40 text-primary-foreground hover:bg-background/30 hover:text-primary-foreground gap-2"
+            >
+              <Calendar className="h-4 w-4" /> Eventos
             </Button>
-            <Button variant="outline" size="sm" className="rounded-full bg-background/20 backdrop-blur-sm border-primary-foreground/40 text-primary-foreground hover:bg-background/30 hover:text-primary-foreground gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => quickFilter(null, "promoção")}
+              className="rounded-full bg-background/20 backdrop-blur-sm border-primary-foreground/40 text-primary-foreground hover:bg-background/30 hover:text-primary-foreground gap-2"
+            >
               <Flame className="h-4 w-4" /> Promoções
             </Button>
-            <Button variant="outline" size="sm" className="rounded-full bg-background/20 backdrop-blur-sm border-primary-foreground/40 text-primary-foreground hover:bg-background/30 hover:text-primary-foreground gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => quickFilter(null, "Centro")}
+              className="rounded-full bg-background/20 backdrop-blur-sm border-primary-foreground/40 text-primary-foreground hover:bg-background/30 hover:text-primary-foreground gap-2"
+            >
               <MapPin className="h-4 w-4" /> Perto de mim
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Wave divider */}
       <div className="absolute bottom-0 left-0 right-0 h-8 bg-background" style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 50%, 0 0)" }} />
     </section>
   );
