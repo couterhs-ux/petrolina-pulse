@@ -28,7 +28,6 @@ const Index = () => {
           <SearchResults />
           <Highlights />
           <SaoJoaoLineup />
-          <Events />
           <Promotions />
           <NearYou />
           <Jobs />
