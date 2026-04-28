@@ -370,16 +370,12 @@ export const SaoJoaoLineup = () => {
                       const isFav = favs.includes(a.name);
                       return (
                         <li
-                          key={a.name + a.time}
+                          key={a.name}
                           className={`group/item rounded-xl border p-3 transition hover:border-primary/40 hover:bg-primary/5 ${
                             a.headliner ? "border-primary/30 bg-primary/5" : "border-border/60"
                           }`}
                         >
                           <div className="flex items-start gap-3">
-                            <div className="flex flex-col items-center justify-center min-w-[48px] py-1 px-2 rounded-lg bg-background border border-border">
-                              <Clock className="h-3 w-3 text-muted-foreground mb-0.5" />
-                              <span className="font-mono font-bold text-xs">{a.time}</span>
-                            </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-1.5 flex-wrap">
                                 <span className={`font-bold leading-tight truncate ${a.headliner ? "text-base text-primary" : "text-sm"}`}>
