@@ -9,7 +9,6 @@ export const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Scroll sincroniza: parallax + zoom + fade do conteúdo
   useEffect(() => {
     let raf = 0;
     const onScroll = () => {
@@ -42,15 +41,14 @@ export const Hero = () => {
     scrollToResults();
   };
 
-  // Transformações dinâmicas baseadas no scroll
   const bgScale = 1 + scrollProgress * 0.18;
   const bgTranslateY = scrollProgress * 80;
   const contentOpacity = 1 - scrollProgress * 1.4;
   const contentTranslateY = scrollProgress * 60;
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden min-h-[88vh] md:min-h-[92vh]">
-      {/* Camada de fundo com parallax + zoom */}
+    <section ref={sectionRef} className="relative overflow-hidden min-h-[88vh] md:min-h-[92vh] bg-[#0a0a0a]">
+      {/* Foto de Petrolina */}
       <div
         className="absolute inset-0 will-change-transform"
         style={{
@@ -58,110 +56,150 @@ export const Hero = () => {
           transition: "transform 60ms linear",
         }}
       >
-        {/* Foto real do skyline de Petrolina às margens do Rio São Francisco */}
         <img
           src={heroImg}
           alt="Skyline de Petrolina visto do Rio São Francisco"
           className="w-full h-full object-cover"
           loading="eager"
         />
-        {/* Overlay com gradiente da marca */}
-        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        {/* Camada extra de escurecimento (mais forte no dark) */}
-        <div className="absolute inset-0 bg-black/20 dark:bg-black/55" />
-        {/* Vinheta inferior para legibilidade */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/70 via-background/10 to-transparent" />
+        {/* Overlay escuro gradiente */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 100%)",
+          }}
+        />
+        {/* Grade de linhas sutis */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
       </div>
 
-      {/* Brilhos ambientes animados */}
-      <div className="pointer-events-none absolute -top-20 -left-20 w-96 h-96 rounded-full blur-3xl opacity-40"
-        style={{ background: "radial-gradient(circle, hsl(var(--accent)/0.6), transparent 70%)" }} />
-      <div className="pointer-events-none absolute -bottom-24 -right-16 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-30"
-        style={{ background: "radial-gradient(circle, hsl(var(--secondary)/0.7), transparent 70%)" }} />
-
       <div
-        className="relative container px-4 pt-24 pb-20 md:pt-32 md:pb-28 will-change-transform"
+        className="relative container px-6 md:px-12 lg:px-16 pt-28 pb-20 md:pt-36 md:pb-28 will-change-transform"
         style={{
           opacity: Math.max(0, contentOpacity),
           transform: `translate3d(0, ${contentTranslateY}px, 0)`,
         }}
       >
-        <div className="max-w-2xl mx-auto text-center text-white">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background/20 backdrop-blur-sm border border-white/30 text-[11px] sm:text-xs font-semibold mb-5 animate-fade-in-up">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+        <div className="max-w-3xl text-white">
+          {/* TAG */}
+          <div
+            className="inline-flex items-center gap-3 pl-3 pr-4 py-1.5 rounded-sm bg-black/50 backdrop-blur-sm border border-white/10 text-[11px] font-semibold uppercase tracking-[0.18em] mb-6 opacity-0 animate-[heroFadeUp_0.6s_ease-out_0.1s_forwards] relative"
+          >
+            <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#FF6B00]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] animate-pulse" />
             Petrolina • Vale do São Francisco
           </div>
 
-          <h1 className="font-display tracking-wide text-5xl sm:text-6xl md:text-8xl mb-4 md:mb-5 leading-[0.95] animate-fade-in-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)] break-words">
-            Descubra Petrolina
-            <span className="block text-accent">em segundos</span>
+          {/* TÍTULO */}
+          <h1 className="font-display tracking-[0.02em] text-6xl sm:text-7xl md:text-8xl lg:text-[8.5rem] mb-6 leading-[0.88] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)]">
+            <span className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.2s_forwards]">
+              Descubra
+            </span>
+            <span className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.35s_forwards]">
+              Petrolina
+            </span>
+            <span
+              className="block opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.5s_forwards]"
+              style={{ color: "#FF6B00" }}
+            >
+              Em segundos
+            </span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-2xl font-light text-white/95 mb-7 md:mb-8 animate-fade-in-up drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] max-w-xl mx-auto leading-relaxed px-2">
-            O coração do Vale do São Francisco em um só lugar — eventos, sabores, experiências e oportunidades. <span className="font-semibold text-accent">🔥</span>
+          {/* SUBTÍTULO */}
+          <p
+            className="text-base md:text-lg font-light text-white/85 mb-8 max-w-[420px] leading-relaxed opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.65s_forwards]"
+          >
+            O coração do Vale do São Francisco em um só lugar — eventos, sabores,
+            experiências e oportunidades.
           </p>
 
-          <form onSubmit={handleSearch} className="relative max-w-xl mx-auto mb-6 animate-scale-in">
-            <div className="relative bg-card rounded-2xl shadow-sun p-2 flex items-center gap-2">
-              <Search className="h-5 w-5 text-muted-foreground ml-3 shrink-0" />
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Pizza, barbearia, UNIVASF, Orla..."
-                className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground py-3 outline-none text-sm md:text-base"
-              />
-              <Button
+          {/* BUSCA */}
+          <div className="opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.8s_forwards]">
+            <form
+              onSubmit={handleSearch}
+              className="max-w-xl flex items-stretch gap-0 mb-4"
+              style={{ borderRadius: "4px" }}
+            >
+              <div
+                className="flex-1 flex items-center gap-2 bg-black/60 backdrop-blur-sm px-4 border border-white/15 border-r-0"
+                style={{ borderRadius: "4px 0 0 4px" }}
+              >
+                <Search className="h-4 w-4 text-white/50 shrink-0" />
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Pizza, barbearia, UNIVASF, Orla..."
+                  className="flex-1 bg-transparent text-white placeholder:text-white/40 py-3 outline-none text-sm md:text-base"
+                />
+              </div>
+              <button
                 type="submit"
-                size="sm"
-                className="rounded-xl gradient-sun text-white border-0 font-semibold hidden sm:inline-flex"
+                className="px-6 md:px-8 font-black uppercase tracking-[0.12em] text-black text-sm hover:brightness-110 transition"
+                style={{ backgroundColor: "#FF6B00", borderRadius: "0 4px 4px 0" }}
               >
                 Buscar
-              </Button>
-            </div>
-          </form>
+              </button>
+            </form>
 
-          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-2 animate-fade-in-up max-w-xs sm:max-w-none mx-auto">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => quickFilter("Eventos")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
-            >
-              <Calendar className="h-4 w-4" /> Eventos
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => quickFilter(null, "promoção")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
-            >
-              <Flame className="h-4 w-4" /> Promoções
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => quickFilter(null, "Centro")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
-            >
-              <MapPin className="h-4 w-4" /> Perto de mim
-            </Button>
+            {/* Chips */}
+            <div className="flex flex-wrap items-center gap-2 max-w-xl">
+              {[
+                { label: "Eventos", icon: "🎉", action: () => quickFilter("Eventos") },
+                { label: "Promoções", icon: "🔥", action: () => quickFilter(null, "promoção") },
+                { label: "Perto de mim", icon: "📍", action: () => quickFilter(null, "Centro") },
+              ].map((c) => (
+                <button
+                  key={c.label}
+                  onClick={c.action}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/85 bg-white/5 border border-white/15 hover:bg-[#FF6B00] hover:border-[#FF6B00] hover:text-black transition-colors"
+                  style={{ borderRadius: "4px" }}
+                >
+                  <span>{c.icon}</span> {c.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Indicador de scroll */}
+          {/* STATS */}
           <div
-            className="mt-12 flex flex-col items-center gap-2 text-white/80 text-xs"
-            style={{ opacity: Math.max(0, 1 - scrollProgress * 2) }}
+            className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] md:text-xs font-semibold uppercase tracking-[0.15em] text-white/65 opacity-0 animate-[heroFadeUp_0.7s_ease-out_1s_forwards]"
           >
-            <span className="uppercase tracking-widest">Role para explorar</span>
-            <div className="w-6 h-10 rounded-full border-2 border-white/60 flex items-start justify-center p-1">
-              <span className="w-1 h-2 rounded-full bg-white/90 animate-bounce" />
-            </div>
+            <span><span className="text-[#FF6B00] font-black">500+</span> Estabelecimentos</span>
+            <span className="text-white/25">·</span>
+            <span><span className="text-[#FF6B00] font-black">120+</span> Eventos/mês</span>
+            <span className="text-white/25">·</span>
+            <span><span className="text-[#FF6B00] font-black">15K</span> Usuários</span>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div
+          className="absolute left-1/2 -translate-x-1/2 bottom-6 flex flex-col items-center gap-2 text-white/50 text-[10px] uppercase tracking-[0.25em]"
+          style={{ opacity: Math.max(0, 1 - scrollProgress * 2) }}
+        >
+          <span>Explorar</span>
+          <div className="w-5 h-8 rounded-full border border-white/40 flex items-start justify-center p-1">
+            <span className="w-0.5 h-1.5 rounded-full bg-white/70 animate-bounce" />
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-8 bg-background" style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 50%, 0 0)" }} />
+      <style>{`
+        @keyframes heroFadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 };
