@@ -60,39 +60,73 @@ export const Hero = () => {
         <img
           src={heroImg}
           alt="Skyline de Petrolina visto do Rio São Francisco"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover animate-[kenBurns_24s_ease-in-out_infinite_alternate]"
+          style={{ filter: "saturate(1.25) contrast(1.08) brightness(0.85)" }}
           loading="eager"
         />
-        {/* Overlay elegante: escuro topo → quente sutil meio → escuro base */}
+        {/* Overlay dramático: escuro + quente vibrante */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(20,10,0,0.25) 45%, rgba(255,107,0,0.12) 65%, rgba(0,0,0,0.55) 100%)",
+              "linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(40,15,0,0.55) 35%, rgba(255,107,0,0.28) 65%, rgba(0,0,0,0.78) 100%)",
           }}
         />
-        {/* Grid sutil de linhas brancas */}
+        {/* Tinta laranja por cima para dar calor */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 mix-blend-overlay opacity-40"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 60%, rgba(255,140,0,0.55), transparent 60%)",
+          }}
+        />
+        {/* Grid sutil */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-60"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)",
+              "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
         {/* Vinheta inferior para legibilidade */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/70 via-background/10 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
       </div>
 
-      {/* Brilhos ambientes quentes */}
+      {/* Brilho pulsante atrás do título */}
       <div
-        className="pointer-events-none absolute -top-20 -left-20 w-96 h-96 rounded-full blur-3xl opacity-40"
-        style={{ background: "radial-gradient(circle, hsl(var(--accent)/0.6), transparent 70%)" }}
+        className="pointer-events-none absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full blur-3xl opacity-60 animate-[heroGlow_5s_ease-in-out_infinite]"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,140,0,0.55) 0%, rgba(255,90,0,0.25) 30%, transparent 65%)",
+        }}
       />
-      <div
-        className="pointer-events-none absolute -bottom-24 -right-16 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-30"
-        style={{ background: "radial-gradient(circle, hsl(var(--secondary)/0.7), transparent 70%)" }}
-      />
+
+      {/* Sparkles flutuantes */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {[
+          { l: "12%", t: "22%", d: "0s", s: "6px" },
+          { l: "85%", t: "30%", d: "1.2s", s: "8px" },
+          { l: "20%", t: "70%", d: "2.4s", s: "5px" },
+          { l: "78%", t: "65%", d: "0.6s", s: "7px" },
+          { l: "50%", t: "18%", d: "3s", s: "4px" },
+          { l: "92%", t: "50%", d: "1.8s", s: "6px" },
+        ].map((p, i) => (
+          <span
+            key={i}
+            className="absolute rounded-full animate-[sparkle_3.5s_ease-in-out_infinite]"
+            style={{
+              left: p.l,
+              top: p.t,
+              width: p.s,
+              height: p.s,
+              background: "rgba(255,200,80,0.9)",
+              boxShadow: "0 0 18px rgba(255,180,50,0.85)",
+              animationDelay: p.d,
+            }}
+          />
+        ))}
+      </div>
 
       <div
         className="relative container px-4 pt-24 pb-20 md:pt-32 md:pb-28 will-change-transform"
@@ -103,7 +137,14 @@ export const Hero = () => {
       >
         <div className="max-w-3xl mx-auto text-center text-white">
           {/* TAG */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/45 backdrop-blur-sm border border-white/30 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.15em] mb-6 opacity-0 animate-[heroFadeDown_0.6s_ease-out_0.05s_forwards]">
+          <div
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full backdrop-blur-md text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] mb-6 opacity-0 animate-[heroFadeDown_0.6s_ease-out_0.05s_forwards]"
+            style={{
+              background: "rgba(0,0,0,0.5)",
+              border: "1px solid rgba(255,179,0,0.5)",
+              boxShadow: "0 0 24px rgba(255,140,0,0.35), inset 0 0 12px rgba(255,179,0,0.1)",
+            }}
+          >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping" style={{ backgroundColor: "#FF6B00" }} />
               <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: "#FF6B00" }} />
@@ -112,18 +153,26 @@ export const Hero = () => {
           </div>
 
           {/* TÍTULO */}
-          <h1 className="font-display tracking-wide text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] mb-5 md:mb-6 leading-[0.9] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]">
-            <span className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.2s_forwards]">
+          <h1 className="font-display tracking-wide text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] mb-5 md:mb-6 leading-[0.9] uppercase">
+            <span
+              className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.2s_forwards]"
+              style={{ textShadow: "0 4px 24px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.45)" }}
+            >
               Descubra
             </span>
-            <span className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.35s_forwards]">
+            <span
+              className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.35s_forwards]"
+              style={{ textShadow: "0 4px 24px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.45)" }}
+            >
               Petrolina
             </span>
             <span
-              className="block opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.5s_forwards]"
+              className="block opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.5s_forwards] bg-clip-text text-transparent animate-[shine_4s_linear_infinite]"
               style={{
-                color: "#FFB300",
-                textShadow: "0 0 40px rgba(255,200,0,0.45), 0 2px 18px rgba(255,107,0,0.35)",
+                backgroundImage:
+                  "linear-gradient(100deg, #FFB300 0%, #FFE680 25%, #FF8A00 50%, #FFE680 75%, #FFB300 100%)",
+                backgroundSize: "200% 100%",
+                filter: "drop-shadow(0 0 32px rgba(255,179,0,0.55)) drop-shadow(0 4px 18px rgba(255,107,0,0.45))",
               }}
             >
               Em segundos
@@ -232,6 +281,22 @@ export const Hero = () => {
         @keyframes heroFadeDown {
           from { opacity: 0; transform: translateY(-12px); }
           to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes kenBurns {
+          0%   { transform: scale(1) translate(0, 0); }
+          100% { transform: scale(1.12) translate(-1.5%, -1%); }
+        }
+        @keyframes heroGlow {
+          0%, 100% { opacity: 0.45; transform: translate(-50%, -50%) scale(1); }
+          50%      { opacity: 0.75; transform: translate(-50%, -50%) scale(1.08); }
+        }
+        @keyframes sparkle {
+          0%, 100% { opacity: 0; transform: scale(0.6); }
+          50%      { opacity: 1; transform: scale(1.2); }
+        }
+        @keyframes shine {
+          0%   { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
         }
       `}</style>
     </section>
