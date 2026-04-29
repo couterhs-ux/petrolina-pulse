@@ -60,28 +60,72 @@ export const Hero = () => {
         <img
           src={heroImg}
           alt="Skyline de Petrolina visto do Rio São Francisco"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover animate-[kenBurns_24s_ease-in-out_infinite_alternate]"
+          style={{ filter: "saturate(1.25) contrast(1.08) brightness(0.85)" }}
           loading="eager"
         />
-        {/* Overlay elegante: escuro topo → quente sutil meio → escuro base */}
+        {/* Overlay dramático: escuro + quente vibrante */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(20,10,0,0.25) 45%, rgba(255,107,0,0.12) 65%, rgba(0,0,0,0.55) 100%)",
+              "linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(40,15,0,0.55) 35%, rgba(255,107,0,0.28) 65%, rgba(0,0,0,0.78) 100%)",
           }}
         />
-        {/* Grid sutil de linhas brancas */}
+        {/* Tinta laranja por cima para dar calor */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 mix-blend-overlay opacity-40"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 60%, rgba(255,140,0,0.55), transparent 60%)",
+          }}
+        />
+        {/* Grid sutil */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-60"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)",
+              "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
         {/* Vinheta inferior para legibilidade */}
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/70 via-background/10 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+      </div>
+
+      {/* Brilho pulsante atrás do título */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full blur-3xl opacity-60 animate-[heroGlow_5s_ease-in-out_infinite]"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,140,0,0.55) 0%, rgba(255,90,0,0.25) 30%, transparent 65%)",
+        }}
+      />
+
+      {/* Sparkles flutuantes */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {[
+          { l: "12%", t: "22%", d: "0s", s: "6px" },
+          { l: "85%", t: "30%", d: "1.2s", s: "8px" },
+          { l: "20%", t: "70%", d: "2.4s", s: "5px" },
+          { l: "78%", t: "65%", d: "0.6s", s: "7px" },
+          { l: "50%", t: "18%", d: "3s", s: "4px" },
+          { l: "92%", t: "50%", d: "1.8s", s: "6px" },
+        ].map((p, i) => (
+          <span
+            key={i}
+            className="absolute rounded-full animate-[sparkle_3.5s_ease-in-out_infinite]"
+            style={{
+              left: p.l,
+              top: p.t,
+              width: p.s,
+              height: p.s,
+              background: "rgba(255,200,80,0.9)",
+              boxShadow: "0 0 18px rgba(255,180,50,0.85)",
+              animationDelay: p.d,
+            }}
+          />
+        ))}
       </div>
 
       {/* Brilhos ambientes quentes */}
