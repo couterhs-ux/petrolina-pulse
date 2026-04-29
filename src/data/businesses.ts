@@ -122,7 +122,7 @@ export const restaurants: Business[] = [
     name: "Bar do Gaúcho",
     category: "Restaurantes",
     subcategory: "Churrascaria • Picanha",
-    area: "Areia Branca",
+    area: "Orla",
     phone: "8738611991",
     rating: 4.8,
     reviews: 1240,
