@@ -128,16 +128,6 @@ export const Hero = () => {
         ))}
       </div>
 
-      {/* Brilhos ambientes quentes */}
-      <div
-        className="pointer-events-none absolute -top-20 -left-20 w-96 h-96 rounded-full blur-3xl opacity-40"
-        style={{ background: "radial-gradient(circle, hsl(var(--accent)/0.6), transparent 70%)" }}
-      />
-      <div
-        className="pointer-events-none absolute -bottom-24 -right-16 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-30"
-        style={{ background: "radial-gradient(circle, hsl(var(--secondary)/0.7), transparent 70%)" }}
-      />
-
       <div
         className="relative container px-4 pt-24 pb-20 md:pt-32 md:pb-28 will-change-transform"
         style={{
@@ -147,7 +137,14 @@ export const Hero = () => {
       >
         <div className="max-w-3xl mx-auto text-center text-white">
           {/* TAG */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/45 backdrop-blur-sm border border-white/30 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.15em] mb-6 opacity-0 animate-[heroFadeDown_0.6s_ease-out_0.05s_forwards]">
+          <div
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full backdrop-blur-md text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] mb-6 opacity-0 animate-[heroFadeDown_0.6s_ease-out_0.05s_forwards]"
+            style={{
+              background: "rgba(0,0,0,0.5)",
+              border: "1px solid rgba(255,179,0,0.5)",
+              boxShadow: "0 0 24px rgba(255,140,0,0.35), inset 0 0 12px rgba(255,179,0,0.1)",
+            }}
+          >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping" style={{ backgroundColor: "#FF6B00" }} />
               <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: "#FF6B00" }} />
@@ -156,18 +153,26 @@ export const Hero = () => {
           </div>
 
           {/* TÍTULO */}
-          <h1 className="font-display tracking-wide text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] mb-5 md:mb-6 leading-[0.9] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]">
-            <span className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.2s_forwards]">
+          <h1 className="font-display tracking-wide text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] mb-5 md:mb-6 leading-[0.9] uppercase">
+            <span
+              className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.2s_forwards]"
+              style={{ textShadow: "0 4px 24px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.45)" }}
+            >
               Descubra
             </span>
-            <span className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.35s_forwards]">
+            <span
+              className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.35s_forwards]"
+              style={{ textShadow: "0 4px 24px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.45)" }}
+            >
               Petrolina
             </span>
             <span
-              className="block opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.5s_forwards]"
+              className="block opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.5s_forwards] bg-clip-text text-transparent animate-[shine_4s_linear_infinite]"
               style={{
-                color: "#FFB300",
-                textShadow: "0 0 40px rgba(255,200,0,0.45), 0 2px 18px rgba(255,107,0,0.35)",
+                backgroundImage:
+                  "linear-gradient(100deg, #FFB300 0%, #FFE680 25%, #FF8A00 50%, #FFE680 75%, #FFB300 100%)",
+                backgroundSize: "200% 100%",
+                filter: "drop-shadow(0 0 32px rgba(255,179,0,0.55)) drop-shadow(0 4px 18px rgba(255,107,0,0.45))",
               }}
             >
               Em segundos
