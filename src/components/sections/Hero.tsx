@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Search, MapPin, Calendar, Flame } from "lucide-react";
 import { useSearch } from "@/context/SearchContext";
+import { useLiveUsers } from "@/hooks/useLiveUsers";
 import heroImg from "@/assets/hero-petrolina-real.jpg";
 
 export const Hero = () => {
   const { query, setQuery, setCategory, scrollToResults, clearFilters } = useSearch();
+  const liveUsers = useLiveUsers();
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
@@ -204,7 +206,7 @@ export const Hero = () => {
             <span className="text-white/35">·</span>
             <span><span className="font-black" style={{ color: "#FFB300" }}>120+</span> Eventos/mês</span>
             <span className="text-white/35">·</span>
-            <span><span className="font-black" style={{ color: "#FFB300" }}>15K</span> Usuários</span>
+            <span><span className="font-black tabular-nums" style={{ color: "#FFB300" }}>{liveUsers.toLocaleString("pt-BR")}</span> Usuários online</span>
           </div>
 
           {/* Scroll indicator */}

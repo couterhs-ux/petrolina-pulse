@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Store, CalendarDays, Users, Star } from "lucide-react";
+import { useLiveUsers } from "@/hooks/useLiveUsers";
 
 type Stat = {
   icon: React.ComponentType<{ className?: string }>;
@@ -7,12 +8,13 @@ type Stat = {
   suffix?: string;
   decimals?: number;
   label: string;
+  live?: boolean;
 };
 
-const stats: Stat[] = [
+const baseStats: Stat[] = [
   { icon: Store, target: 500, suffix: "+", label: "Estabelecimentos cadastrados" },
   { icon: CalendarDays, target: 120, suffix: "+", label: "Eventos por mês" },
-  { icon: Users, target: 356, label: "Usuários ativos" },
+  { icon: Users, target: 0, label: "Usuários online agora", live: true },
   { icon: Star, target: 4.8, decimals: 1, suffix: "★", label: "Avaliação média" },
 ];
 
@@ -52,6 +54,10 @@ const Counter = ({ target, suffix = "", decimals = 0, start }: { target: number;
 export const Stats = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
+  const liveUsers = useLiveUsers();
+  const stats: Stat[] = baseStats.map((s) =>
+    s.live ? { ...s, target: liveUsers } : s,
+  );
 
   useEffect(() => {
     if (!sectionRef.current) return;
