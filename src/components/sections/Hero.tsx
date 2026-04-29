@@ -282,6 +282,22 @@ export const Hero = () => {
           from { opacity: 0; transform: translateY(-12px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes kenBurns {
+          0%   { transform: scale(1) translate(0, 0); }
+          100% { transform: scale(1.12) translate(-1.5%, -1%); }
+        }
+        @keyframes heroGlow {
+          0%, 100% { opacity: 0.45; transform: translate(-50%, -50%) scale(1); }
+          50%      { opacity: 0.75; transform: translate(-50%, -50%) scale(1.08); }
+        }
+        @keyframes sparkle {
+          0%, 100% { opacity: 0; transform: scale(0.6); }
+          50%      { opacity: 1; transform: scale(1.2); }
+        }
+        @keyframes shine {
+          0%   { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
+        }
       `}</style>
     </section>
   );
