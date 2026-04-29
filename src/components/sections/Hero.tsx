@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Search, MapPin, Calendar, Flame } from "lucide-react";
 import { useSearch } from "@/context/SearchContext";
+import { useLiveUsers } from "@/hooks/useLiveUsers";
 import heroImg from "@/assets/hero-petrolina-real.jpg";
 
 export const Hero = () => {
   const { query, setQuery, setCategory, scrollToResults, clearFilters } = useSearch();
+  const liveUsers = useLiveUsers();
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
