@@ -29,6 +29,7 @@ const Index = () => {
         <main>
           <Hero />
           <CategoryTicker />
+          <Stats />
           <Categories />
           <SearchResults />
           
