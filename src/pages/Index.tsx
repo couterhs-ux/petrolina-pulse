@@ -28,11 +28,13 @@ const Index = () => {
           <Hero />
           <Categories />
           <SearchResults />
+          <Weather />
           <Highlights />
           <SaoJoaoLineup />
+          <Tourism />
           <Promotions />
           <NearYou />
-          
+
           <Florists />
           <Colleges />
           <CTA />
