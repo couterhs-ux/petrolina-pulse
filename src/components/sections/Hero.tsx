@@ -121,12 +121,12 @@ export const Hero = () => {
             </div>
           </form>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 animate-fade-in-up">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-2 animate-fade-in-up max-w-xs sm:max-w-none mx-auto">
             <Button
               variant="outline"
               size="sm"
               onClick={() => quickFilter("Eventos")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2"
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
             >
               <Calendar className="h-4 w-4" /> Eventos
             </Button>
@@ -134,7 +134,7 @@ export const Hero = () => {
               variant="outline"
               size="sm"
               onClick={() => quickFilter(null, "promoção")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2"
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
             >
               <Flame className="h-4 w-4" /> Promoções
             </Button>
@@ -142,7 +142,7 @@ export const Hero = () => {
               variant="outline"
               size="sm"
               onClick={() => quickFilter(null, "Centro")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2"
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
             >
               <MapPin className="h-4 w-4" /> Perto de mim
             </Button>
