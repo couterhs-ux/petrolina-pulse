@@ -92,13 +92,13 @@ export const Hero = () => {
             Petrolina • Vale do São Francisco
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-black mb-4 leading-tight animate-fade-in-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.45)]">
+          <h1 className="font-display tracking-wide text-6xl md:text-8xl mb-5 leading-[0.95] animate-fade-in-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
             Descubra Petrolina
             <span className="block text-accent">em segundos</span>
           </h1>
 
-          <p className="text-base md:text-lg text-white/95 mb-8 animate-fade-in-up drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
-            O guia completo da cidade. Achados, eventos, promoções e muito mais 🔥
+          <p className="text-lg md:text-2xl font-light text-white/95 mb-8 animate-fade-in-up drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] max-w-xl mx-auto leading-relaxed">
+            O coração do Vale do São Francisco em um só lugar — eventos, sabores, experiências e oportunidades. <span className="font-semibold text-accent">🔥</span>
           </p>
 
           <form onSubmit={handleSearch} className="relative max-w-xl mx-auto mb-6 animate-scale-in">

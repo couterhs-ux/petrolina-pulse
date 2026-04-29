@@ -5,6 +5,7 @@ import { SearchResults } from "@/components/sections/SearchResults";
 import { Highlights } from "@/components/sections/Highlights";
 import { Events } from "@/components/sections/Events";
 import { SaoJoaoLineup } from "@/components/sections/SaoJoaoLineup";
+import { CategoryTicker } from "@/components/sections/CategoryTicker";
 import { VaquejadaHighlight } from "@/components/sections/VaquejadaHighlight";
 import { Promotions } from "@/components/sections/Promotions";
 import { NearYou } from "@/components/sections/NearYou";
@@ -26,6 +27,7 @@ const Index = () => {
         <Header />
         <main>
           <Hero />
+          <CategoryTicker />
           <Categories />
           <SearchResults />
           
