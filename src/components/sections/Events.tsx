@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Calendar, MapPin, Ticket } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Calendar, MapPin, Ticket, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -61,7 +62,15 @@ export const Events = () => {
                   </div>
                 </div>
                 <div className="p-3">
-                  <WhatsAppButton phone={e.phone} message={`Olá! Quero saber mais sobre o evento ${e.name}`} className="w-full" label="Mais informações" />
+                  {e.website && e.website.startsWith("/") ? (
+                    <Button asChild className="w-full rounded-full gradient-sun text-white border-0 font-semibold gap-2">
+                      <Link to={e.website}>
+                        Ver página do evento <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  ) : (
+                    <WhatsAppButton phone={e.phone} message={`Olá! Quero saber mais sobre o evento ${e.name}`} className="w-full" label="Mais informações" />
+                  )}
                 </div>
               </article>
             ))}
