@@ -3,6 +3,7 @@ import orla from "@/assets/turismo-orla.jpg";
 import catedral from "@/assets/turismo-catedral.jpg";
 import vinicolas from "@/assets/turismo-vinicolas.jpg";
 import ilhaFogo from "@/assets/turismo-ilha-fogo.jpg";
+import vapor from "@/assets/turismo-vapor.jpg";
 
 type Spot = {
   name: string;
@@ -44,6 +45,14 @@ const spots: Spot[] = [
     image: ilhaFogo,
     tag: "Aventura",
     maps: "https://www.google.com/maps/search/Ilha+do+Fogo+Petrolina",
+  },
+  {
+    name: "Vapor do Vinho",
+    area: "Juazeiro - BA",
+    description: "Passeio clássico pelo Rio São Francisco a bordo do tradicional barco com música ao vivo e gastronomia regional.",
+    image: vapor,
+    tag: "Passeio",
+    maps: "https://www.google.com/maps/search/Vapor+do+Vinho+Juazeiro",
   },
 ];
 
