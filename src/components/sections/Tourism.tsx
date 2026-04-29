@@ -88,7 +88,7 @@ export const Tourism = () => {
                   height={512}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 via-30% to-transparent" />
                 {s.tag && (
                   <span className="absolute top-2 left-2 text-[10px] font-black px-2 py-1 rounded-full bg-primary text-primary-foreground uppercase tracking-wider">
                     {s.tag}
