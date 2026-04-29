@@ -5,6 +5,7 @@ import { SearchResults } from "@/components/sections/SearchResults";
 import { Highlights } from "@/components/sections/Highlights";
 import { Events } from "@/components/sections/Events";
 import { SaoJoaoLineup } from "@/components/sections/SaoJoaoLineup";
+import { VaquejadaHighlight } from "@/components/sections/VaquejadaHighlight";
 import { Promotions } from "@/components/sections/Promotions";
 import { NearYou } from "@/components/sections/NearYou";
 import { Tourism } from "@/components/sections/Tourism";
@@ -30,6 +31,7 @@ const Index = () => {
           
           <Highlights />
           <SaoJoaoLineup />
+          <VaquejadaHighlight />
           <Tourism />
           <Promotions />
           <NearYou />
