@@ -206,7 +206,7 @@ export const Hero = () => {
             <span className="text-white/35">·</span>
             <span><span className="font-black" style={{ color: "#FFB300" }}>120+</span> Eventos/mês</span>
             <span className="text-white/35">·</span>
-            <span><span className="font-black" style={{ color: "#FFB300" }}>15K</span> Usuários</span>
+            <span><span className="font-black tabular-nums" style={{ color: "#FFB300" }}>{liveUsers.toLocaleString("pt-BR")}</span> Usuários online</span>
           </div>
 
           {/* Scroll indicator */}
