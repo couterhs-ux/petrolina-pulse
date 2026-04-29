@@ -26,7 +26,7 @@ export const Footer = () => {
               <li>Serviços</li>
               <li>Eventos</li>
               <li>Promoções</li>
-              <li>Empregos</li>
+              <li>Floriculturas</li>
             </ul>
           </div>
 
