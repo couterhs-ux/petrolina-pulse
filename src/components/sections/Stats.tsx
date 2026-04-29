@@ -1,63 +1,36 @@
 import { useEffect, useRef, useState } from "react";
+import { Store, CalendarDays, Users, Star } from "lucide-react";
 
 type Stat = {
-  value: number;
+  icon: React.ComponentType<{ className?: string }>;
+  target: number;
+  suffix?: string;
   decimals?: number;
-  /** Suffix exibido em laranja */
-  suffix: string;
-  /** Divide o valor antes de formatar (ex.: K = 1000) */
-  divisor?: number;
   label: string;
-  description: string;
 };
 
 const stats: Stat[] = [
-  {
-    value: 500,
-    suffix: "+",
-    label: "Estabelecimentos",
-    description: "Negócios cadastrados em toda Petrolina",
-  },
-  {
-    value: 120,
-    suffix: "+",
-    label: "Eventos por mês",
-    description: "Shows, festas e experiências para viver",
-  },
-  {
-    value: 15,
-    suffix: "K",
-    label: "Usuários ativos",
-    description: "Petrolinenses navegando todo mês",
-  },
-  {
-    value: 4.8,
-    decimals: 1,
-    suffix: "★",
-    label: "Avaliação média",
-    description: "Aprovado por quem usa de verdade",
-  },
+  { icon: Store, target: 500, suffix: "+", label: "Estabelecimentos cadastrados" },
+  { icon: CalendarDays, target: 120, suffix: "+", label: "Eventos por mês" },
+  { icon: Users, target: 356, label: "Usuários ativos" },
+  { icon: Star, target: 4.8, decimals: 1, suffix: "★", label: "Avaliação média" },
 ];
 
-const Counter = ({
-  target,
-  decimals = 0,
-  start,
-}: {
-  target: number;
-  decimals?: number;
-  start: boolean;
-}) => {
+const formatValue = (value: number, decimals = 0) =>
+  decimals > 0 ? value.toFixed(decimals) : Math.floor(value).toLocaleString("pt-BR");
+
+const Counter = ({ target, suffix = "", decimals = 0, start }: { target: number; suffix?: string; decimals?: number; start: boolean }) => {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
     if (!start) return;
-    const duration = 1800;
+    const duration = 1600;
     const startTime = performance.now();
     let raf = 0;
 
     const tick = (now: number) => {
       const progress = Math.min(1, (now - startTime) / duration);
+      // easeOutCubic
       const eased = 1 - Math.pow(1 - progress, 3);
       setValue(target * eased);
       if (progress < 1) raf = requestAnimationFrame(tick);
@@ -68,12 +41,12 @@ const Counter = ({
     return () => cancelAnimationFrame(raf);
   }, [start, target]);
 
-  const formatted =
-    decimals > 0
-      ? value.toFixed(decimals)
-      : Math.floor(value).toLocaleString("pt-BR");
-
-  return <>{formatted}</>;
+  return (
+    <span>
+      {formatValue(value, decimals)}
+      {suffix}
+    </span>
+  );
 };
 
 export const Stats = () => {
@@ -100,54 +73,35 @@ export const Stats = () => {
   return (
     <section
       ref={sectionRef}
-      style={{ backgroundColor: "#0f0f0f" }}
+      className="relative py-10 md:py-16 bg-muted/60 dark:bg-card border-y border-border"
       aria-label="Estatísticas do Guia PNZ"
-      className="reveal"
     >
-      <div className="container px-0">
-        <div
-          className="grid grid-cols-2 md:grid-cols-4"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
-        >
-          {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className="flex flex-col items-start text-left p-6 md:p-10"
-              style={{
-                borderBottom: "1px solid rgba(255,255,255,0.07)",
-                borderRight:
-                  i < stats.length - 1
-                    ? "1px solid rgba(255,255,255,0.07)"
-                    : undefined,
-              }}
-            >
-              <p
-                className="font-display leading-none tabular-nums"
-                style={{ fontSize: "clamp(3rem, 6vw, 5rem)", color: "#f0ece4" }}
+      <div className="container px-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          {stats.map((stat) => {
+            const Icon = stat.icon;
+            return (
+              <div
+                key={stat.label}
+                className="flex flex-col items-center text-center p-4 md:p-6 rounded-2xl bg-card/70 dark:bg-background/40 backdrop-blur-sm border border-border/60 shadow-card hover:shadow-sun transition-shadow"
               >
-                <Counter
-                  target={stat.value}
-                  decimals={stat.decimals}
-                  start={visible}
-                />
-                <span style={{ color: "#FF6B00" }}>{stat.suffix}</span>
-              </p>
-
-              <p
-                className="mt-4 font-syne uppercase text-xs font-semibold"
-                style={{ letterSpacing: "0.2em", color: "#666" }}
-              >
-                {stat.label}
-              </p>
-
-              <p
-                className="mt-2 font-light text-sm leading-relaxed"
-                style={{ color: "#999" }}
-              >
-                {stat.description}
-              </p>
-            </div>
-          ))}
+                <div className="w-11 h-11 md:w-12 md:h-12 rounded-xl flex items-center justify-center mb-3 gradient-sun shadow-sun">
+                  <Icon className="h-5 w-5 md:h-6 md:w-6 text-primary-foreground" />
+                </div>
+                <p className="font-display tracking-wide text-4xl md:text-6xl leading-none text-primary tabular-nums">
+                  <Counter
+                    target={stat.target}
+                    suffix={stat.suffix}
+                    decimals={stat.decimals}
+                    start={visible}
+                  />
+                </p>
+                <p className="mt-2 text-xs md:text-sm font-semibold text-muted-foreground leading-snug">
+                  {stat.label}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

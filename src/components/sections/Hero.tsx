@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Mouse } from "lucide-react";
+import { Search, MapPin, Calendar, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSearch } from "@/context/SearchContext";
+import heroImg from "@/assets/hero-petrolina-real.jpg";
 
 export const Hero = () => {
-  const { scrollToResults } = useSearch();
+  const { query, setQuery, setCategory, scrollToResults, clearFilters } = useSearch();
   const sectionRef = useRef<HTMLElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
 
+  // Scroll sincroniza: parallax + zoom + fade do conteúdo
   useEffect(() => {
     let raf = 0;
     const onScroll = () => {
@@ -28,121 +30,138 @@ export const Hero = () => {
     };
   }, []);
 
-  return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden min-h-[100vh] flex items-center bg-background"
-    >
-      {/* Grid background */}
-      <div className="absolute inset-0 bg-grid opacity-60" />
-      {/* Radial orange glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 50% at 50% 30%, rgba(255,107,0,0.18) 0%, transparent 60%)",
-        }}
-      />
-      {/* Vignette */}
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
+  const handleSearch = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    scrollToResults();
+  };
 
+  const quickFilter = (cat: string | null, q: string = "") => {
+    clearFilters();
+    setQuery(q);
+    setCategory(cat);
+    scrollToResults();
+  };
+
+  // Transformações dinâmicas baseadas no scroll
+  const bgScale = 1 + scrollProgress * 0.18;
+  const bgTranslateY = scrollProgress * 80;
+  const contentOpacity = 1 - scrollProgress * 1.4;
+  const contentTranslateY = scrollProgress * 60;
+
+  return (
+    <section ref={sectionRef} className="relative overflow-hidden min-h-[88vh] md:min-h-[92vh]">
+      {/* Camada de fundo com parallax + zoom */}
       <div
-        className="relative container px-4 sm:px-6 pt-32 pb-24 md:pt-40 md:pb-32 w-full"
+        className="absolute inset-0 will-change-transform"
         style={{
-          opacity: Math.max(0, 1 - scrollProgress * 1.4),
-          transform: `translate3d(0, ${scrollProgress * 60}px, 0)`,
+          transform: `translate3d(0, ${bgTranslateY}px, 0) scale(${bgScale})`,
+          transition: "transform 60ms linear",
         }}
       >
-        <div className="max-w-6xl mx-auto">
-          {/* Eyebrow tag */}
-          <div
-            className="flex items-center gap-3 mb-6 md:mb-8 opacity-0"
-            style={{ animation: "fade-up 0.7s ease-out 0.1s forwards" }}
-          >
-            <span className="w-10 h-px" style={{ backgroundColor: "#FF6B00" }} />
-            <span
-              className="font-syne uppercase text-xs font-semibold"
-              style={{ letterSpacing: "0.25em", color: "#FF6B00" }}
-            >
-              Petrolina, Pernambuco
-            </span>
+        {/* Foto real do skyline de Petrolina às margens do Rio São Francisco */}
+        <img
+          src={heroImg}
+          alt="Skyline de Petrolina visto do Rio São Francisco"
+          className="w-full h-full object-cover"
+          loading="eager"
+        />
+        {/* Overlay com gradiente da marca */}
+        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
+        {/* Camada extra de escurecimento (mais forte no dark) */}
+        <div className="absolute inset-0 bg-black/20 dark:bg-black/55" />
+        {/* Vinheta inferior para legibilidade */}
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/70 via-background/10 to-transparent" />
+      </div>
+
+      {/* Brilhos ambientes animados */}
+      <div className="pointer-events-none absolute -top-20 -left-20 w-96 h-96 rounded-full blur-3xl opacity-40"
+        style={{ background: "radial-gradient(circle, hsl(var(--accent)/0.6), transparent 70%)" }} />
+      <div className="pointer-events-none absolute -bottom-24 -right-16 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-30"
+        style={{ background: "radial-gradient(circle, hsl(var(--secondary)/0.7), transparent 70%)" }} />
+
+      <div
+        className="relative container px-4 pt-24 pb-20 md:pt-32 md:pb-28 will-change-transform"
+        style={{
+          opacity: Math.max(0, contentOpacity),
+          transform: `translate3d(0, ${contentTranslateY}px, 0)`,
+        }}
+      >
+        <div className="max-w-2xl mx-auto text-center text-white">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background/20 backdrop-blur-sm border border-white/30 text-[11px] sm:text-xs font-semibold mb-5 animate-fade-in-up">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            Petrolina • Vale do São Francisco
           </div>
 
-          {/* Title */}
-          <h1 className="font-display leading-[0.85] tracking-tight">
-            <span
-              className="block text-foreground text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] opacity-0"
-              style={{ animation: "fade-up 0.8s ease-out 0.3s forwards" }}
-            >
-              VIVA
-            </span>
-            <span
-              className="block text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] opacity-0"
-              style={{
-                color: "transparent",
-                WebkitTextStroke: "1px rgba(255,255,255,0.25)",
-                animation: "fade-up 0.8s ease-out 0.45s forwards",
-              }}
-            >
-              PETROLINA
-            </span>
+          <h1 className="font-display tracking-wide text-5xl sm:text-6xl md:text-8xl mb-4 md:mb-5 leading-[0.95] animate-fade-in-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)] break-words">
+            Descubra Petrolina
+            <span className="block text-accent">em segundos</span>
           </h1>
 
-          {/* Subtitle */}
-          <p
-            className="mt-8 md:mt-10 font-light text-base md:text-lg max-w-[480px] leading-relaxed opacity-0"
-            style={{ color: "#999", animation: "fade-up 0.7s ease-out 0.7s forwards" }}
-          >
-            O guia definitivo para descobrir o que vibra na cidade — eventos, sabores,
-            serviços e oportunidades, num só lugar.
+          <p className="text-base sm:text-lg md:text-2xl font-light text-white/95 mb-7 md:mb-8 animate-fade-in-up drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] max-w-xl mx-auto leading-relaxed px-2">
+            O coração do Vale do São Francisco em um só lugar — eventos, sabores, experiências e oportunidades. <span className="font-semibold text-accent">🔥</span>
           </p>
 
-          {/* CTAs */}
+          <form onSubmit={handleSearch} className="relative max-w-xl mx-auto mb-6 animate-scale-in">
+            <div className="relative bg-card rounded-2xl shadow-sun p-2 flex items-center gap-2">
+              <Search className="h-5 w-5 text-muted-foreground ml-3 shrink-0" />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Pizza, barbearia, UNIVASF, Orla..."
+                className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground py-3 outline-none text-sm md:text-base"
+              />
+              <Button
+                type="submit"
+                size="sm"
+                className="rounded-xl gradient-sun text-white border-0 font-semibold hidden sm:inline-flex"
+              >
+                Buscar
+              </Button>
+            </div>
+          </form>
+
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-2 animate-fade-in-up max-w-xs sm:max-w-none mx-auto">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => quickFilter("Eventos")}
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
+            >
+              <Calendar className="h-4 w-4" /> Eventos
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => quickFilter(null, "promoção")}
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
+            >
+              <Flame className="h-4 w-4" /> Promoções
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => quickFilter(null, "Centro")}
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
+            >
+              <MapPin className="h-4 w-4" /> Perto de mim
+            </Button>
+          </div>
+
+          {/* Indicador de scroll */}
           <div
-            className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md sm:max-w-none opacity-0"
-            style={{ animation: "fade-up 0.7s ease-out 0.9s forwards" }}
+            className="mt-12 flex flex-col items-center gap-2 text-white/80 text-xs"
+            style={{ opacity: Math.max(0, 1 - scrollProgress * 2) }}
           >
-            <Button
-              onClick={scrollToResults}
-              className="border-0 font-syne uppercase tracking-[0.15em] text-xs font-bold text-black hover:brightness-110 h-12 px-8"
-              style={{ backgroundColor: "#FF6B00", borderRadius: "2px" }}
-            >
-              Explorar a cidade
-            </Button>
-            <Button
-              asChild
-              variant="ghost"
-              className="font-syne uppercase tracking-[0.15em] text-xs font-bold text-foreground hover:bg-white/5 h-12 px-6 group"
-              style={{ borderRadius: "2px" }}
-            >
-              <a href="/anuncie" className="inline-flex items-center gap-2">
-                Anuncie aqui
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-            </Button>
+            <span className="uppercase tracking-widest">Role para explorar</span>
+            <div className="w-6 h-10 rounded-full border-2 border-white/60 flex items-start justify-center p-1">
+              <span className="w-1 h-2 rounded-full bg-white/90 animate-bounce" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-0"
-        style={{
-          animation: "fade-up 0.7s ease-out 1.2s forwards",
-          opacity: Math.max(0, 1 - scrollProgress * 3),
-        }}
-      >
-        <Mouse
-          className="h-5 w-5 animate-bounce"
-          style={{ color: "#FF6B00", animationDuration: "2s" }}
-        />
-        <span
-          className="font-syne uppercase text-[10px] font-semibold"
-          style={{ letterSpacing: "0.3em", color: "#666" }}
-        >
-          Role para explorar
-        </span>
-      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-8 bg-background" style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 50%, 0 0)" }} />
     </section>
   );
 };
