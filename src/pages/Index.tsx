@@ -7,6 +7,8 @@ import { Events } from "@/components/sections/Events";
 import { SaoJoaoLineup } from "@/components/sections/SaoJoaoLineup";
 import { Promotions } from "@/components/sections/Promotions";
 import { NearYou } from "@/components/sections/NearYou";
+import { Tourism } from "@/components/sections/Tourism";
+import { Weather } from "@/components/sections/Weather";
 
 import { Florists } from "@/components/sections/Florists";
 import { Colleges } from "@/components/sections/Colleges";
@@ -26,11 +28,13 @@ const Index = () => {
           <Hero />
           <Categories />
           <SearchResults />
+          <Weather />
           <Highlights />
           <SaoJoaoLineup />
+          <Tourism />
           <Promotions />
           <NearYou />
-          
+
           <Florists />
           <Colleges />
           <CTA />
