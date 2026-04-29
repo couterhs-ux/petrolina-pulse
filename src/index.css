@@ -83,25 +83,46 @@
   }
 
   .dark {
-    --background: 25 30% 8%;
-    --foreground: 40 38% 96%;
-    --card: 25 25% 12%;
-    --card-foreground: 40 38% 96%;
-    --popover: 25 25% 12%;
-    --popover-foreground: 40 38% 96%;
-    --primary: 18 95% 58%;
-    --primary-foreground: 25 30% 8%;
-    --secondary: 160 60% 42%;
-    --secondary-foreground: 40 38% 96%;
-    --accent: 44 100% 60%;
-    --accent-foreground: 25 30% 8%;
-    --muted: 25 20% 16%;
-    --muted-foreground: 35 15% 65%;
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 40 38% 96%;
-    --border: 25 20% 20%;
-    --input: 25 20% 20%;
-    --ring: 18 95% 58%;
+    /* Azul-noite profundo, sem tom marrom — inspirado no rio à noite */
+    --background: 222 35% 7%;
+    --foreground: 210 30% 96%;
+
+    --card: 222 30% 11%;
+    --card-foreground: 210 30% 96%;
+
+    --popover: 222 30% 11%;
+    --popover-foreground: 210 30% 96%;
+
+    /* Laranja vibrante mantém identidade */
+    --primary: 18 100% 60%;
+    --primary-foreground: 222 35% 7%;
+    --primary-glow: 28 100% 65%;
+
+    /* Verde rio mais luminoso para destacar no escuro */
+    --secondary: 158 70% 48%;
+    --secondary-foreground: 222 35% 7%;
+    --secondary-glow: 156 80% 58%;
+
+    /* Amarelo sol */
+    --accent: 44 100% 62%;
+    --accent-foreground: 222 35% 7%;
+    --accent-glow: 48 100% 70%;
+
+    --muted: 222 25% 16%;
+    --muted-foreground: 215 20% 70%;
+
+    --destructive: 0 75% 58%;
+    --destructive-foreground: 210 30% 96%;
+
+    --success: 142 65% 50%;
+    --success-foreground: 222 35% 7%;
+
+    --whatsapp: 142 70% 48%;
+    --whatsapp-foreground: 222 35% 7%;
+
+    --border: 222 25% 20%;
+    --input: 222 25% 18%;
+    --ring: 18 100% 60%;
   }
 }
 
