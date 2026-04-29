@@ -2,7 +2,7 @@ import { Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoPnz from "@/assets/logo-pnz.png";
 
-const menu = ["Início", "Restaurantes", "Eventos", "Promoções", "Floriculturas", "Faculdades", "Empregos"];
+const menu = ["Início", "Restaurantes", "Eventos", "Promoções", "Floriculturas", "Faculdades"];
 
 export const Header = () => {
   return (

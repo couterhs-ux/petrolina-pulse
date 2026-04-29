@@ -7,7 +7,7 @@ import { Events } from "@/components/sections/Events";
 import { SaoJoaoLineup } from "@/components/sections/SaoJoaoLineup";
 import { Promotions } from "@/components/sections/Promotions";
 import { NearYou } from "@/components/sections/NearYou";
-import { Jobs } from "@/components/sections/Jobs";
+
 import { Florists } from "@/components/sections/Florists";
 import { Colleges } from "@/components/sections/Colleges";
 import { CTA } from "@/components/sections/CTA";
@@ -30,7 +30,7 @@ const Index = () => {
           <SaoJoaoLineup />
           <Promotions />
           <NearYou />
-          <Jobs />
+          
           <Florists />
           <Colleges />
           <CTA />
