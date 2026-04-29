@@ -27,7 +27,7 @@ const Index = () => {
           <Hero />
           <Categories />
           <SearchResults />
-          <Weather />
+          
           <Highlights />
           <SaoJoaoLineup />
           <Tourism />
