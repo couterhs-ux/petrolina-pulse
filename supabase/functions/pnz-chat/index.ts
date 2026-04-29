@@ -122,7 +122,8 @@ serve(async (req) => {
           { role: "system", content: SYSTEM_PROMPT },
           ...sanitized,
         ],
-        stream: true,
+        // Resposta JSON simples (não-stream) para suportar invoke() do client
+        stream: false,
       }),
     });
 
@@ -147,8 +148,12 @@ serve(async (req) => {
       });
     }
 
-    return new Response(response.body, {
-      headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+    const completion = await response.json();
+    const content: string =
+      completion?.choices?.[0]?.message?.content ?? "Desculpe, não consegui responder agora.";
+
+    return new Response(JSON.stringify({ content }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
     console.error("pnz-chat error:", e);
