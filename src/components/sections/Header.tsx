@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { Search, Menu } from "lucide-react";
+import { Menu, LogIn, LogOut, User as UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { useAuth } from "@/context/AuthContext";
+import { toast } from "sonner";
 import logoPnz from "@/assets/logo-pnz.png";
 
 const menu = ["Categorias", "Eventos", "Promoções", "Anunciar"];
@@ -10,6 +12,12 @@ const menu = ["Categorias", "Eventos", "Promoções", "Anunciar"];
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user, signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+    toast.success("Você saiu da sua conta.");
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);

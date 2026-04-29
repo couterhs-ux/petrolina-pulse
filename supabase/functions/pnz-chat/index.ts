@@ -59,11 +59,10 @@ serve(async (req) => {
       global: { headers: { Authorization: `Bearer ${token}` } },
     });
 
-    // Accept either a valid user JWT or the anon key (publishable). Reject anything else.
-    const { data: userData } = await supabase.auth.getUser(token);
-    const isAnon = token === SUPABASE_ANON_KEY;
-    if (!userData?.user && !isAnon) {
-      return new Response(JSON.stringify({ error: "Token inválido" }), {
+    // Require an authenticated user. Reject anonymous/anon-key-only callers.
+    const { data: userData, error: userErr } = await supabase.auth.getUser(token);
+    if (userErr || !userData?.user) {
+      return new Response(JSON.stringify({ error: "Faça login para usar o assistente" }), {
         status: 401,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -123,7 +122,8 @@ serve(async (req) => {
           { role: "system", content: SYSTEM_PROMPT },
           ...sanitized,
         ],
-        stream: true,
+        // Resposta JSON simples (não-stream) para suportar invoke() do client
+        stream: false,
       }),
     });
 
@@ -148,8 +148,12 @@ serve(async (req) => {
       });
     }
 
-    return new Response(response.body, {
-      headers: { ...corsHeaders, "Content-Type": "text/event-stream" },
+    const completion = await response.json();
+    const content: string =
+      completion?.choices?.[0]?.message?.content ?? "Desculpe, não consegui responder agora.";
+
+    return new Response(JSON.stringify({ content }), {
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (e) {
     console.error("pnz-chat error:", e);
