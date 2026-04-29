@@ -102,6 +102,7 @@ export const Stats = () => {
       ref={sectionRef}
       style={{ backgroundColor: "#0f0f0f" }}
       aria-label="Estatísticas do Guia PNZ"
+      className="reveal"
     >
       <div className="container px-0">
         <div

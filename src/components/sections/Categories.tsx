@@ -52,7 +52,7 @@ export const Categories = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-20 md:py-28 bg-background"
+      className="py-20 md:py-28 bg-background reveal"
       aria-label="Categorias"
     >
       <div className="container px-4">

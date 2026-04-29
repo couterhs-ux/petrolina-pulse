@@ -10,7 +10,7 @@ export const Events = () => {
 
   return (
     <section
-      className="py-20 md:py-28"
+      className="py-20 md:py-28 reveal"
       style={{ backgroundColor: "#0f0f0f" }}
       aria-label="Eventos em destaque"
     >
