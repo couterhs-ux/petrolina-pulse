@@ -40,8 +40,8 @@ const spots: Spot[] = [
   },
   {
     name: "Ilha do Fogo",
-    area: "Rio São Francisco",
-    description: "Travessia rápida de barco para uma ilha com restaurantes flutuantes e prainha de água doce.",
+    area: "Ponte Presidente Dutra",
+    description: "Ilha às margens do Rio São Francisco, vista da Ponte Presidente Dutra. Praia de água doce, cruzeiro no topo e ótimo banho.",
     image: ilhaFogo,
     tag: "Aventura",
     maps: "https://www.google.com/maps/search/Ilha+do+Fogo+Petrolina",
