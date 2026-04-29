@@ -54,6 +54,10 @@ const Counter = ({ target, suffix = "", decimals = 0, start }: { target: number;
 export const Stats = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
+  const liveUsers = useLiveUsers();
+  const stats: Stat[] = baseStats.map((s) =>
+    s.live ? { ...s, target: liveUsers } : s,
+  );
 
   useEffect(() => {
     if (!sectionRef.current) return;
