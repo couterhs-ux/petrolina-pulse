@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -28,17 +29,81 @@ CONHECIMENTO:
 
 NÃO invente telefones/endereços. Sempre que possível, encerre com: "Vê mais no Guia PNZ 👀".`;
 
+const MAX_MESSAGES = 20;
+const MAX_CONTENT_CHARS = 2000;
+const ALLOWED_ROLES = new Set(["user", "assistant"]);
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    // Validate Supabase anon/user JWT to ensure the caller is using a known client
+    const authHeader = req.headers.get("Authorization") ?? "";
+    const token = authHeader.replace(/^Bearer\s+/i, "").trim();
+    if (!token) {
+      return new Response(JSON.stringify({ error: "Não autorizado" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY");
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      throw new Error("Supabase env not configured");
+    }
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      global: { headers: { Authorization: `Bearer ${token}` } },
+    });
+
+    // Accept either a valid user JWT or the anon key (publishable). Reject anything else.
+    const { data: userData } = await supabase.auth.getUser(token);
+    const isAnon = token === SUPABASE_ANON_KEY;
+    if (!userData?.user && !isAnon) {
+      return new Response(JSON.stringify({ error: "Token inválido" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const { messages } = await req.json();
 
-    if (!Array.isArray(messages)) {
-      return new Response(JSON.stringify({ error: "messages must be an array" }), {
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return new Response(JSON.stringify({ error: "messages inválido" }), {
         status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (messages.length > MAX_MESSAGES) {
+      return new Response(
+        JSON.stringify({ error: `Máximo de ${MAX_MESSAGES} mensagens por requisição` }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Sanitize: filter roles and cap content length
+    const sanitized = messages
+      .filter((m: any) => m && ALLOWED_ROLES.has(m.role) && typeof m.content === "string")
+      .map((m: any) => ({
+        role: m.role,
+        content: String(m.content).slice(0, MAX_CONTENT_CHARS),
+      }));
+
+    if (sanitized.length === 0) {
+      return new Response(JSON.stringify({ error: "Nenhuma mensagem válida" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const totalChars = sanitized.reduce((s, m) => s + m.content.length, 0);
+    if (totalChars > MAX_MESSAGES * MAX_CONTENT_CHARS) {
+      return new Response(JSON.stringify({ error: "Payload muito grande" }), {
+        status: 413,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
@@ -56,7 +121,7 @@ serve(async (req) => {
         model: "google/gemini-2.5-flash",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
-          ...messages,
+          ...sanitized,
         ],
         stream: true,
       }),
@@ -89,7 +154,7 @@ serve(async (req) => {
   } catch (e) {
     console.error("pnz-chat error:", e);
     return new Response(
-      JSON.stringify({ error: e instanceof Error ? e.message : "Erro desconhecido" }),
+      JSON.stringify({ error: "Erro interno no servidor" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
