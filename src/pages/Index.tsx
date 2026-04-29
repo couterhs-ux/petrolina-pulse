@@ -6,6 +6,7 @@ import { Highlights } from "@/components/sections/Highlights";
 import { Events } from "@/components/sections/Events";
 import { SaoJoaoLineup } from "@/components/sections/SaoJoaoLineup";
 import { CategoryTicker } from "@/components/sections/CategoryTicker";
+import { Stats } from "@/components/sections/Stats";
 import { VaquejadaHighlight } from "@/components/sections/VaquejadaHighlight";
 import { Promotions } from "@/components/sections/Promotions";
 import { NearYou } from "@/components/sections/NearYou";
