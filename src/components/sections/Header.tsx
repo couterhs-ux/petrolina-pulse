@@ -108,25 +108,29 @@ export const Header = () => {
               </SheetHeader>
 
               <nav className="flex-1 overflow-y-auto p-4 flex flex-col gap-1">
-                {menu.map((item) => (
-                  <a
-                    key={item}
-                    href="#"
-                    onClick={() => setOpen(false)}
-                    className="px-4 py-3.5 text-base font-semibold rounded-xl text-foreground hover:bg-muted active:bg-muted/80 transition-colors"
-                  >
-                    {item}
-                  </a>
-                ))}
+                {menu.map((item) => {
+                  const href = item === "Anunciar" ? "/anuncie" : "#";
+                  return (
+                    <a
+                      key={item}
+                      href={href}
+                      onClick={() => setOpen(false)}
+                      className="px-4 py-3.5 text-base font-semibold rounded-xl text-foreground hover:bg-muted active:bg-muted/80 transition-colors"
+                    >
+                      {item}
+                    </a>
+                  );
+                })}
               </nav>
 
               <div className="p-4 border-t border-border">
                 <Button
+                  asChild
                   className="w-full border-0 rounded-md font-black uppercase tracking-wide text-black hover:brightness-110 shadow-sun"
                   style={{ backgroundColor: "#FF6B00" }}
                   onClick={() => setOpen(false)}
                 >
-                  Anunciar 🚀
+                  <a href="/anuncie">Anunciar 🚀</a>
                 </Button>
               </div>
             </SheetContent>
