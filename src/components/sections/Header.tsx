@@ -75,11 +75,12 @@ export const Header = () => {
         <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
           <ThemeToggle />
           <Button
+            asChild
             size="sm"
             className="hidden sm:inline-flex border-0 rounded-md font-black uppercase tracking-wide text-black hover:brightness-110 shadow-sun"
             style={{ backgroundColor: "#FF6B00" }}
           >
-            Anunciar 🚀
+            <a href="/anuncie">Anunciar 🚀</a>
           </Button>
 
           {/* Hamburguer mobile */}
