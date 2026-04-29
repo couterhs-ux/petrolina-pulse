@@ -162,16 +162,23 @@ const Anuncie = () => {
         </section>
 
         {/* Planos */}
-        <section id="planos" className="py-16 md:py-24 bg-background">
-          <div className="container px-4">
+        <section id="planos" className="py-16 md:py-24 bg-[hsl(222_35%_7%)] relative overflow-hidden">
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse at top, rgba(255,107,0,0.12) 0%, transparent 60%)",
+            }}
+          />
+          <div className="container px-4 relative">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <Badge className="bg-primary/10 text-primary border-0 font-bold mb-3 uppercase tracking-wider">
+              <Badge className="bg-white/5 text-white border border-white/10 font-bold mb-3 uppercase tracking-wider">
                 <TrendingUp className="h-3.5 w-3.5 mr-1" /> Escolha seu plano
               </Badge>
-              <h2 className="font-display tracking-wide text-4xl md:text-6xl leading-tight mb-4">
-                Planos pensados para <span className="text-primary">crescer junto com você</span>
+              <h2 className="font-display tracking-wide text-4xl md:text-6xl leading-tight mb-4 text-white">
+                Planos pensados para <span style={{ color: "#FF6B00" }}>crescer junto com você</span>
               </h2>
-              <p className="text-muted-foreground text-base md:text-lg">
+              <p className="text-white/60 text-base md:text-lg">
                 Sem fidelidade. Cancele quando quiser. Comece hoje e veja o resultado já no primeiro mês.
               </p>
             </div>
@@ -182,64 +189,68 @@ const Anuncie = () => {
                 return (
                   <article
                     key={plan.name}
-                    className={`relative flex flex-col rounded-3xl p-7 md:p-8 transition-all ${
+                    className={`relative flex flex-col rounded-3xl p-7 md:p-8 transition-all bg-[hsl(222_30%_11%)] ${
                       plan.highlight
-                        ? "bg-card border-2 border-primary shadow-sun md:-translate-y-4"
-                        : "bg-card border border-border shadow-card hover:shadow-soft"
+                        ? "border-2 shadow-sun md:-translate-y-4"
+                        : "border border-white/10 hover:border-white/20"
                     }`}
+                    style={plan.highlight ? { borderColor: "#FF6B00" } : undefined}
                   >
                     {plan.highlight && (
                       <Badge
                         className="absolute -top-3 left-1/2 -translate-x-1/2 border-0 font-black uppercase tracking-wider text-black px-4 py-1"
                         style={{ backgroundColor: "#FF6B00" }}
                       >
-                        ⭐ Mais escolhido
+                        ⭐ Mais popular
                       </Badge>
                     )}
 
                     <div className="flex items-center gap-3 mb-5">
                       <div
-                        className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                          plan.highlight ? "gradient-sun shadow-sun" : "bg-muted"
-                        }`}
+                        className="w-12 h-12 rounded-xl flex items-center justify-center"
+                        style={{
+                          backgroundColor: plan.highlight ? "#FF6B00" : "rgba(255,107,0,0.12)",
+                        }}
                       >
                         <Icon
-                          className={`h-6 w-6 ${
-                            plan.highlight ? "text-primary-foreground" : "text-primary"
-                          }`}
+                          className="h-6 w-6"
+                          style={{ color: plan.highlight ? "#000" : "#FF6B00" }}
                         />
                       </div>
-                      <h3 className="font-display tracking-wide text-3xl">{plan.name}</h3>
+                      <h3 className="font-display tracking-wide text-3xl text-white">{plan.name}</h3>
                     </div>
 
-                    <p className="text-sm text-muted-foreground mb-6 min-h-[2.5rem]">
+                    <p className="text-sm text-white/60 mb-6 min-h-[2.5rem]">
                       {plan.description}
                     </p>
 
                     <div className="flex items-baseline gap-1 mb-6">
-                      <span className="text-2xl font-bold text-foreground">R$</span>
-                      <span className="font-display tracking-wide text-6xl md:text-7xl text-primary leading-none">
+                      <span className="text-2xl font-bold text-white">R$</span>
+                      <span
+                        className="font-display tracking-wide text-6xl md:text-7xl leading-none"
+                        style={{ color: "#FF6B00" }}
+                      >
                         {plan.price}
                       </span>
-                      <span className="text-base text-muted-foreground font-semibold">/mês</span>
+                      <span className="text-base text-white/60 font-semibold">/mês</span>
                     </div>
 
                     <ul className="space-y-3 mb-8 flex-1">
                       {plan.features.map((feature) => (
                         <li key={feature} className="flex items-start gap-2.5 text-sm">
                           <span
-                            className={`mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
-                              plan.highlight ? "gradient-sun" : "bg-primary/10"
-                            }`}
+                            className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                            style={{
+                              backgroundColor: plan.highlight ? "#FF6B00" : "rgba(255,107,0,0.15)",
+                            }}
                           >
                             <Check
-                              className={`h-3 w-3 ${
-                                plan.highlight ? "text-primary-foreground" : "text-primary"
-                              }`}
+                              className="h-3 w-3"
+                              style={{ color: plan.highlight ? "#000" : "#FF6B00" }}
                               strokeWidth={3}
                             />
                           </span>
-                          <span className="text-foreground/90">{feature}</span>
+                          <span className="text-white/85">{feature}</span>
                         </li>
                       ))}
                     </ul>
@@ -249,19 +260,14 @@ const Anuncie = () => {
                       message={`Olá! Tenho interesse no plano ${plan.name} (R$ ${plan.price}/mês) do Guia PNZ.`}
                       label={plan.cta}
                       size="lg"
-                      className={`w-full rounded-md font-bold ${
-                        plan.highlight
-                          ? "text-black hover:brightness-110 border-0 shadow-sun"
-                          : ""
-                      }`}
-                      style={plan.highlight ? { backgroundColor: "#FF6B00" } : undefined}
+                      className="w-full rounded-md font-bold gap-2"
                     />
                   </article>
                 );
               })}
             </div>
 
-            <p className="text-center text-xs text-muted-foreground mt-10">
+            <p className="text-center text-xs text-white/50 mt-10">
               💳 Pagamento via Pix, boleto ou cartão · 🔒 Sem taxa de adesão · ❌ Cancele quando quiser
             </p>
           </div>
@@ -306,14 +312,14 @@ const Anuncie = () => {
         </section>
 
         {/* Depoimentos */}
-        <section className="py-16 md:py-24 bg-muted/60 dark:bg-card border-y border-border">
+        <section className="py-16 md:py-24 bg-[hsl(222_30%_9%)] border-y border-white/5">
           <div className="container px-4">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <Badge className="bg-secondary/15 text-secondary border-0 font-bold mb-3 uppercase tracking-wider">
-                <Star className="h-3.5 w-3.5 mr-1 fill-current" /> Quem anuncia, recomenda
+              <Badge className="bg-white/5 text-white border border-white/10 font-bold mb-3 uppercase tracking-wider">
+                <Star className="h-3.5 w-3.5 mr-1 fill-current" style={{ color: "#FF6B00" }} /> Quem anuncia, recomenda
               </Badge>
-              <h2 className="font-display tracking-wide text-4xl md:text-6xl leading-tight mb-4">
-                Donos de negócio que <span className="text-primary">venderam mais</span> com o PNZ
+              <h2 className="font-display tracking-wide text-4xl md:text-6xl leading-tight mb-4 text-white">
+                Donos de negócio que <span style={{ color: "#FF6B00" }}>venderam mais</span> com o PNZ
               </h2>
             </div>
 
@@ -321,23 +327,26 @@ const Anuncie = () => {
               {testimonials.map((t) => (
                 <article
                   key={t.name}
-                  className="bg-card rounded-3xl p-7 border border-border shadow-card hover:shadow-sun transition-shadow flex flex-col"
+                  className="bg-[hsl(222_30%_11%)] rounded-3xl p-7 border border-white/10 hover:border-white/20 transition-all flex flex-col"
                 >
-                  <div className="flex items-center gap-1 mb-4 text-accent">
+                  <div className="flex items-center gap-1 mb-4" style={{ color: "#FF6B00" }}>
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star key={i} className="h-4 w-4 fill-current" />
                     ))}
                   </div>
-                  <p className="text-foreground/90 leading-relaxed mb-6 flex-1">
-                    “{t.quote}”
+                  <p className="text-white/85 leading-relaxed mb-6 flex-1">
+                    "{t.quote}"
                   </p>
-                  <div className="flex items-center gap-3 pt-4 border-t border-border">
-                    <div className="w-11 h-11 rounded-full gradient-sun flex items-center justify-center text-primary-foreground font-black shadow-sun shrink-0">
+                  <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                    <div
+                      className="w-11 h-11 rounded-full flex items-center justify-center font-black text-black shrink-0"
+                      style={{ backgroundColor: "#FF6B00" }}
+                    >
                       {t.initials}
                     </div>
                     <div className="min-w-0">
-                      <p className="font-bold text-sm truncate">{t.name}</p>
-                      <p className="text-xs text-muted-foreground truncate">{t.role}</p>
+                      <p className="font-bold text-sm truncate text-white">{t.name}</p>
+                      <p className="text-xs text-white/55 truncate">{t.role}</p>
                     </div>
                   </div>
                 </article>
