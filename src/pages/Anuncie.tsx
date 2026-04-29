@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Check, Crown, Star, Sparkles, TrendingUp, Users, Zap } from "lucide-react";
+import { ArrowLeft, Check, Crown, Star, Sparkles, TrendingUp, Users, Zap, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -88,7 +88,7 @@ const stats = [
 
 const Anuncie = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-[hsl(222_35%_7%)] text-white">
       <Header />
 
       <main>
