@@ -54,19 +54,22 @@ export const Header = () => {
         </a>
 
         <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
-          {menu.map((item) => (
-            <a
-              key={item}
-              href="#"
-              className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors whitespace-nowrap ${
-                scrolled
-                  ? "text-foreground/80 hover:text-primary hover:bg-muted"
-                  : "text-white/90 hover:text-white hover:bg-white/15"
-              }`}
-            >
-              {item}
-            </a>
-          ))}
+          {menu.map((item) => {
+            const href = item === "Anunciar" ? "/anuncie" : "#";
+            return (
+              <a
+                key={item}
+                href={href}
+                className={`px-4 py-2 text-sm font-semibold rounded-full transition-colors whitespace-nowrap ${
+                  scrolled
+                    ? "text-foreground/80 hover:text-primary hover:bg-muted"
+                    : "text-white/90 hover:text-white hover:bg-white/15"
+                }`}
+              >
+                {item}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
