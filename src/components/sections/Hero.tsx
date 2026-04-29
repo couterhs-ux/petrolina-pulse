@@ -67,6 +67,8 @@ export const Hero = () => {
         />
         {/* Overlay com gradiente da marca */}
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
+        {/* Camada extra de escurecimento (mais forte no dark) */}
+        <div className="absolute inset-0 bg-black/20 dark:bg-black/55" />
         {/* Vinheta inferior para legibilidade */}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/70 via-background/10 to-transparent" />
       </div>
