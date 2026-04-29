@@ -33,6 +33,7 @@ export const Header = () => {
           <Button size="icon" variant="ghost" className="lg:hidden">
             <Search className="h-5 w-5" />
           </Button>
+          <ThemeToggle />
           <Button size="sm" className="gradient-sun text-primary-foreground border-0 rounded-full font-bold hidden sm:inline-flex">
             Anunciar 🚀
           </Button>
