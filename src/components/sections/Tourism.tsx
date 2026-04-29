@@ -79,7 +79,7 @@ export const Tourism = () => {
               rel="noopener noreferrer"
               className="group relative rounded-2xl overflow-hidden bg-card shadow-card hover:shadow-river hover:-translate-y-1 transition-all"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden bg-black">
                 <img
                   src={s.image}
                   alt={s.name}
@@ -87,11 +87,12 @@ export const Tourism = () => {
                   width={800}
                   height={512}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  style={{ filter: "saturate(1.25) contrast(1.05)" }}
+                  style={{ filter: "saturate(1.2) contrast(1.08) brightness(0.96)" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                {/* Overlay escuro só na parte de baixo, para legibilidade do título */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
                 {s.tag && (
-                  <span className="absolute top-2 left-2 text-[10px] font-black px-2 py-1 rounded-full bg-primary text-primary-foreground uppercase tracking-wider">
+                  <span className="absolute top-2 left-2 text-[10px] font-black px-2 py-1 rounded-full bg-primary text-primary-foreground uppercase tracking-wider shadow-md">
                     {s.tag}
                   </span>
                 )}
@@ -99,8 +100,8 @@ export const Tourism = () => {
                   <ExternalLink className="h-3.5 w-3.5" />
                 </span>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="font-black text-base leading-tight mb-1">{s.name}</h3>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <h3 className="font-black text-base leading-tight mb-1 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">{s.name}</h3>
+                  <div className="flex items-center gap-1 text-xs text-white/85">
                     <MapPin className="h-3 w-3" /> {s.area}
                   </div>
                 </div>
