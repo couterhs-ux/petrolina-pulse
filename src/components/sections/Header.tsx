@@ -10,7 +10,7 @@ export const Header = () => {
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-lg border-b border-border">
       <div className="container px-4 h-16 md:h-20 flex items-center justify-between gap-4">
         <a href="/" className="flex items-center gap-2.5 shrink-0">
-          <img src={logoPnz} alt="Guia PNZ - Viva Petrolina" width={56} height={56} className="w-12 h-12 md:w-14 md:h-14 rounded-2xl object-cover shadow-sun" />
+          <img src={logoPnz} alt="Guia PNZ - Viva Petrolina" width={56} height={56} className="w-12 h-12 md:w-14 md:h-14 rounded-2xl object-cover shadow-sun bg-white p-0.5 dark:ring-2 dark:ring-primary/40" />
           <div className="hidden sm:block">
             <p className="font-black text-lg md:text-xl leading-none">Guia PNZ</p>
             <p className="text-[11px] md:text-xs text-muted-foreground leading-tight mt-0.5">Viva Petrolina</p>
