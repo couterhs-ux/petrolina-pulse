@@ -12,6 +12,12 @@ const menu = ["Categorias", "Eventos", "Promoções", "Anunciar"];
 export const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { user, signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+    toast.success("Você saiu da sua conta.");
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
