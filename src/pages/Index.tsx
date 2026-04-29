@@ -15,6 +15,7 @@ import { Tourism } from "@/components/sections/Tourism";
 import { Florists } from "@/components/sections/Florists";
 import { Colleges } from "@/components/sections/Colleges";
 import { CTA } from "@/components/sections/CTA";
+import { CTASearch } from "@/components/sections/CTASearch";
 import { Social } from "@/components/sections/Social";
 import { Footer } from "@/components/sections/Footer";
 import { BottomNav } from "@/components/sections/BottomNav";
@@ -42,8 +43,9 @@ const Index = () => {
 
           <Florists />
           <Colleges />
-          <CTA />
           <Social />
+          <CTASearch />
+          <CTA />
         </main>
         <Footer />
         <BottomNav />
