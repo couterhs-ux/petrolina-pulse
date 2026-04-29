@@ -67,6 +67,8 @@ export const Hero = () => {
         />
         {/* Overlay com gradiente da marca */}
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
+        {/* Camada extra de escurecimento (mais forte no dark) */}
+        <div className="absolute inset-0 bg-black/20 dark:bg-black/55" />
         {/* Vinheta inferior para legibilidade */}
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/70 via-background/10 to-transparent" />
       </div>
@@ -84,8 +86,8 @@ export const Hero = () => {
           transform: `translate3d(0, ${contentTranslateY}px, 0)`,
         }}
       >
-        <div className="max-w-2xl mx-auto text-center text-primary-foreground">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background/20 backdrop-blur-sm border border-primary-foreground/30 text-xs font-semibold mb-5 animate-fade-in-up">
+        <div className="max-w-2xl mx-auto text-center text-white">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background/20 backdrop-blur-sm border border-white/30 text-xs font-semibold mb-5 animate-fade-in-up">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             Petrolina • Vale do São Francisco
           </div>
@@ -95,7 +97,7 @@ export const Hero = () => {
             <span className="block text-accent">em segundos</span>
           </h1>
 
-          <p className="text-base md:text-lg text-primary-foreground/95 mb-8 animate-fade-in-up drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
+          <p className="text-base md:text-lg text-white/95 mb-8 animate-fade-in-up drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
             O guia completo da cidade. Achados, eventos, promoções e muito mais 🔥
           </p>
 
@@ -112,7 +114,7 @@ export const Hero = () => {
               <Button
                 type="submit"
                 size="sm"
-                className="rounded-xl gradient-sun text-primary-foreground border-0 font-semibold hidden sm:inline-flex"
+                className="rounded-xl gradient-sun text-white border-0 font-semibold hidden sm:inline-flex"
               >
                 Buscar
               </Button>
@@ -124,7 +126,7 @@ export const Hero = () => {
               variant="outline"
               size="sm"
               onClick={() => quickFilter("Eventos")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-primary-foreground/40 text-primary-foreground hover:bg-background/30 hover:text-primary-foreground gap-2"
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2"
             >
               <Calendar className="h-4 w-4" /> Eventos
             </Button>
@@ -132,7 +134,7 @@ export const Hero = () => {
               variant="outline"
               size="sm"
               onClick={() => quickFilter(null, "promoção")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-primary-foreground/40 text-primary-foreground hover:bg-background/30 hover:text-primary-foreground gap-2"
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2"
             >
               <Flame className="h-4 w-4" /> Promoções
             </Button>
@@ -140,7 +142,7 @@ export const Hero = () => {
               variant="outline"
               size="sm"
               onClick={() => quickFilter(null, "Centro")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-primary-foreground/40 text-primary-foreground hover:bg-background/30 hover:text-primary-foreground gap-2"
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2"
             >
               <MapPin className="h-4 w-4" /> Perto de mim
             </Button>
@@ -148,12 +150,12 @@ export const Hero = () => {
 
           {/* Indicador de scroll */}
           <div
-            className="mt-12 flex flex-col items-center gap-2 text-primary-foreground/80 text-xs"
+            className="mt-12 flex flex-col items-center gap-2 text-white/80 text-xs"
             style={{ opacity: Math.max(0, 1 - scrollProgress * 2) }}
           >
             <span className="uppercase tracking-widest">Role para explorar</span>
-            <div className="w-6 h-10 rounded-full border-2 border-primary-foreground/60 flex items-start justify-center p-1">
-              <span className="w-1 h-2 rounded-full bg-primary-foreground/90 animate-bounce" />
+            <div className="w-6 h-10 rounded-full border-2 border-white/60 flex items-start justify-center p-1">
+              <span className="w-1 h-2 rounded-full bg-white/90 animate-bounce" />
             </div>
           </div>
         </div>
