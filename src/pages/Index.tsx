@@ -30,7 +30,7 @@ const Index = () => {
           <SaoJoaoLineup />
           <Promotions />
           <NearYou />
-          <Jobs />
+          
           <Florists />
           <Colleges />
           <CTA />
