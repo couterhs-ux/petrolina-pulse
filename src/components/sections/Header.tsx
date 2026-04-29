@@ -1,5 +1,6 @@
 import { Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import logoPnz from "@/assets/logo-pnz.png";
 
 const menu = ["Início", "Restaurantes", "Eventos", "Promoções", "Floriculturas", "Faculdades"];
