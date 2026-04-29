@@ -80,24 +80,24 @@ export const Hero = () => {
         style={{ background: "radial-gradient(circle, hsl(var(--secondary)/0.7), transparent 70%)" }} />
 
       <div
-        className="relative container px-4 pt-12 pb-20 md:pt-24 md:pb-28 will-change-transform"
+        className="relative container px-4 pt-24 pb-20 md:pt-32 md:pb-28 will-change-transform"
         style={{
           opacity: Math.max(0, contentOpacity),
           transform: `translate3d(0, ${contentTranslateY}px, 0)`,
         }}
       >
         <div className="max-w-2xl mx-auto text-center text-white">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background/20 backdrop-blur-sm border border-white/30 text-xs font-semibold mb-5 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background/20 backdrop-blur-sm border border-white/30 text-[11px] sm:text-xs font-semibold mb-5 animate-fade-in-up">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             Petrolina • Vale do São Francisco
           </div>
 
-          <h1 className="font-display tracking-wide text-6xl md:text-8xl mb-5 leading-[0.95] animate-fade-in-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+          <h1 className="font-display tracking-wide text-5xl sm:text-6xl md:text-8xl mb-4 md:mb-5 leading-[0.95] animate-fade-in-up drop-shadow-[0_4px_24px_rgba(0,0,0,0.5)] break-words">
             Descubra Petrolina
             <span className="block text-accent">em segundos</span>
           </h1>
 
-          <p className="text-lg md:text-2xl font-light text-white/95 mb-8 animate-fade-in-up drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-2xl font-light text-white/95 mb-7 md:mb-8 animate-fade-in-up drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] max-w-xl mx-auto leading-relaxed px-2">
             O coração do Vale do São Francisco em um só lugar — eventos, sabores, experiências e oportunidades. <span className="font-semibold text-accent">🔥</span>
           </p>
 
@@ -121,12 +121,12 @@ export const Hero = () => {
             </div>
           </form>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 animate-fade-in-up">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-2 animate-fade-in-up max-w-xs sm:max-w-none mx-auto">
             <Button
               variant="outline"
               size="sm"
               onClick={() => quickFilter("Eventos")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2"
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
             >
               <Calendar className="h-4 w-4" /> Eventos
             </Button>
@@ -134,7 +134,7 @@ export const Hero = () => {
               variant="outline"
               size="sm"
               onClick={() => quickFilter(null, "promoção")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2"
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
             >
               <Flame className="h-4 w-4" /> Promoções
             </Button>
@@ -142,7 +142,7 @@ export const Hero = () => {
               variant="outline"
               size="sm"
               onClick={() => quickFilter(null, "Centro")}
-              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2"
+              className="rounded-full bg-background/20 backdrop-blur-sm border-white/40 text-white hover:bg-background/30 hover:text-white gap-2 w-full sm:w-auto"
             >
               <MapPin className="h-4 w-4" /> Perto de mim
             </Button>

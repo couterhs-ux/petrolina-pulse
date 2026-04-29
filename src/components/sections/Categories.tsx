@@ -29,7 +29,7 @@ export const Categories = () => {
           </div>
         </div>
 
-        <div className="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 overflow-x-auto scrollbar-hide -mx-4 px-4 pb-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           {categories.map((cat) => {
             const Icon = cat.icon;
             const active = category === cat.name;
@@ -37,12 +37,12 @@ export const Categories = () => {
               <button
                 key={cat.name}
                 onClick={() => handleClick(cat.name)}
-                className="group flex flex-col items-center gap-2 shrink-0 w-20 md:w-auto"
+                className="group flex flex-col items-center justify-center gap-2 p-3 sm:p-2 rounded-2xl bg-card hover:bg-muted/60 transition-colors min-w-0"
               >
-                <div className={`w-16 h-16 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-card group-hover:scale-110 group-active:scale-95 transition-transform ${active ? "ring-4 ring-primary ring-offset-2" : ""}`}>
-                  <Icon className="h-7 w-7 md:h-6 md:w-6 text-white" />
+                <div className={`w-14 h-14 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-card group-hover:scale-110 group-active:scale-95 transition-transform shrink-0 ${active ? "ring-4 ring-primary ring-offset-2" : ""}`}>
+                  <Icon className="h-6 w-6 text-white" />
                 </div>
-                <span className={`text-xs font-semibold text-center leading-tight ${active ? "text-primary" : "text-foreground"}`}>
+                <span className={`text-xs font-semibold text-center leading-tight truncate max-w-full ${active ? "text-primary" : "text-foreground"}`}>
                   {cat.name}
                 </span>
               </button>
