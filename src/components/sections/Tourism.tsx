@@ -17,7 +17,7 @@ type Spot = {
 const spots: Spot[] = [
   {
     name: "Orla de Petrolina",
-    area: "Centro",
+    area: "Orla do Rio São Francisco",
     description: "Cartão-postal da cidade às margens do Rio São Francisco. Ideal para caminhar ao pôr do sol.",
     image: orla,
     tag: "Imperdível",
