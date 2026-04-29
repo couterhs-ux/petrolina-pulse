@@ -12,6 +12,7 @@ import bododromoImg from "@/assets/bododromo.jpg";
 import barGauchoImg from "@/assets/bar-do-gaucho.jpg";
 import mercadoTuristicoImg from "@/assets/mercado-turistico.jpg";
 import roseiralImg from "@/assets/roseiral.jpg";
+import vaquejadaImg from "@/assets/vaquejada-petrolina.jpg";
 
 export type Category =
   | "Restaurantes"
@@ -439,6 +440,18 @@ export const events: Business[] = [
     image: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&h=500&fit=crop",
     filter: "gratis",
     phone: "8721085000",
+  },
+  {
+    id: "e5",
+    name: "41ª Vaquejada de Petrolina",
+    category: "Eventos",
+    date: "30 mai • Sábado",
+    area: "Parque Dr. Geraldo Estrela",
+    price: "Gratuito",
+    image: vaquejadaImg,
+    filter: "gratis",
+    phone: "8721085000",
+    website: "/vaquejada",
   },
 ];
 
