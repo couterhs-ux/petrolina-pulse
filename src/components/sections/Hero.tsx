@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Search, MapPin, Calendar, Flame } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useSearch } from "@/context/SearchContext";
 import heroImg from "@/assets/hero-petrolina-real.jpg";
 
@@ -47,8 +46,8 @@ export const Hero = () => {
   const contentTranslateY = scrollProgress * 60;
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden min-h-[88vh] md:min-h-[92vh] bg-[#0a0a0a]">
-      {/* Foto de Petrolina */}
+    <section ref={sectionRef} className="relative overflow-hidden min-h-[88vh] md:min-h-[92vh]">
+      {/* Foto de Petrolina + overlays */}
       <div
         className="absolute inset-0 will-change-transform"
         style={{
@@ -62,15 +61,15 @@ export const Hero = () => {
           className="w-full h-full object-cover"
           loading="eager"
         />
-        {/* Overlay escuro gradiente */}
+        {/* Overlay elegante: escuro topo → quente sutil meio → escuro base */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 100%)",
+              "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(20,10,0,0.25) 45%, rgba(255,107,0,0.12) 65%, rgba(0,0,0,0.55) 100%)",
           }}
         />
-        {/* Grade de linhas sutis */}
+        {/* Grid sutil de linhas brancas */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -79,27 +78,39 @@ export const Hero = () => {
             backgroundSize: "60px 60px",
           }}
         />
+        {/* Vinheta inferior para legibilidade */}
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background/70 via-background/10 to-transparent" />
       </div>
 
+      {/* Brilhos ambientes quentes */}
       <div
-        className="relative container px-6 md:px-12 lg:px-16 pt-28 pb-20 md:pt-36 md:pb-28 will-change-transform"
+        className="pointer-events-none absolute -top-20 -left-20 w-96 h-96 rounded-full blur-3xl opacity-40"
+        style={{ background: "radial-gradient(circle, hsl(var(--accent)/0.6), transparent 70%)" }}
+      />
+      <div
+        className="pointer-events-none absolute -bottom-24 -right-16 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-30"
+        style={{ background: "radial-gradient(circle, hsl(var(--secondary)/0.7), transparent 70%)" }}
+      />
+
+      <div
+        className="relative container px-4 pt-24 pb-20 md:pt-32 md:pb-28 will-change-transform"
         style={{
           opacity: Math.max(0, contentOpacity),
           transform: `translate3d(0, ${contentTranslateY}px, 0)`,
         }}
       >
-        <div className="max-w-3xl text-white">
+        <div className="max-w-3xl mx-auto text-center text-white">
           {/* TAG */}
-          <div
-            className="inline-flex items-center gap-3 pl-3 pr-4 py-1.5 rounded-sm bg-black/50 backdrop-blur-sm border border-white/10 text-[11px] font-semibold uppercase tracking-[0.18em] mb-6 opacity-0 animate-[heroFadeUp_0.6s_ease-out_0.1s_forwards] relative"
-          >
-            <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#FF6B00]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B00] animate-pulse" />
-            Petrolina • Vale do São Francisco
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/45 backdrop-blur-sm border border-white/30 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.15em] mb-6 opacity-0 animate-[heroFadeDown_0.6s_ease-out_0.05s_forwards]">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping" style={{ backgroundColor: "#FF6B00" }} />
+              <span className="relative inline-flex rounded-full h-2 w-2" style={{ backgroundColor: "#FF6B00" }} />
+            </span>
+            <span className="text-white">Petrolina • Vale do São Francisco</span>
           </div>
 
           {/* TÍTULO */}
-          <h1 className="font-display tracking-[0.02em] text-6xl sm:text-7xl md:text-8xl lg:text-[8.5rem] mb-6 leading-[0.88] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)]">
+          <h1 className="font-display tracking-wide text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] mb-5 md:mb-6 leading-[0.9] uppercase drop-shadow-[0_4px_24px_rgba(0,0,0,0.55)]">
             <span className="block text-white opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.2s_forwards]">
               Descubra
             </span>
@@ -108,95 +119,116 @@ export const Hero = () => {
             </span>
             <span
               className="block opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.5s_forwards]"
-              style={{ color: "#FF6B00" }}
+              style={{
+                color: "#FFB300",
+                textShadow: "0 0 40px rgba(255,200,0,0.45), 0 2px 18px rgba(255,107,0,0.35)",
+              }}
             >
               Em segundos
             </span>
           </h1>
 
           {/* SUBTÍTULO */}
-          <p
-            className="text-base md:text-lg font-light text-white/85 mb-8 max-w-[420px] leading-relaxed opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.65s_forwards]"
-          >
-            O coração do Vale do São Francisco em um só lugar — eventos, sabores,
-            experiências e oportunidades.
+          <p className="text-base sm:text-lg md:text-xl font-light text-white/95 mb-8 max-w-[600px] mx-auto leading-[1.7] drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.65s_forwards]">
+            O coração do Vale do São Francisco em um só lugar — eventos, sabores, experiências e oportunidades. <span className="font-semibold" style={{ color: "#FFB300" }}>🔥</span>
           </p>
 
           {/* BUSCA */}
           <div className="opacity-0 animate-[heroFadeUp_0.7s_ease-out_0.8s_forwards]">
             <form
               onSubmit={handleSearch}
-              className="max-w-xl flex items-stretch gap-0 mb-4"
-              style={{ borderRadius: "4px" }}
+              className="relative max-w-2xl mx-auto mb-6 group/search"
             >
               <div
-                className="flex-1 flex items-center gap-2 bg-black/60 backdrop-blur-sm px-4 border border-white/15 border-r-0"
-                style={{ borderRadius: "4px 0 0 4px" }}
+                className="relative bg-card rounded-2xl p-2 flex items-center gap-2 border-2 border-transparent transition-all duration-300 focus-within:border-transparent"
+                style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.08)" }}
               >
-                <Search className="h-4 w-4 text-white/50 shrink-0" />
+                {/* Borda gradiente no focus */}
+                <div
+                  className="absolute inset-0 rounded-2xl pointer-events-none opacity-0 group-focus-within/search:opacity-100 transition-opacity"
+                  style={{
+                    padding: "2px",
+                    background: "linear-gradient(90deg, #FF6B00, #FFB347)",
+                    WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+                    WebkitMaskComposite: "xor",
+                    maskComposite: "exclude",
+                  }}
+                />
+                <Search className="h-5 w-5 text-muted-foreground ml-3 shrink-0 transition-transform duration-500 group-hover/search:rotate-[18deg] group-focus-within/search:rotate-[18deg]" />
                 <input
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Pizza, barbearia, UNIVASF, Orla..."
-                  className="flex-1 bg-transparent text-white placeholder:text-white/40 py-3 outline-none text-sm md:text-base"
+                  className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground py-3.5 outline-none text-sm md:text-base"
                 />
+                <button
+                  type="submit"
+                  className="hidden sm:inline-flex items-center justify-center rounded-xl px-6 py-3 font-black uppercase tracking-wider text-black text-sm hover:brightness-110 transition"
+                  style={{
+                    background: "linear-gradient(90deg, #FF6B00, #FFB347)",
+                    boxShadow: "0 6px 18px rgba(255,107,0,0.45)",
+                  }}
+                >
+                  Buscar
+                </button>
               </div>
-              <button
-                type="submit"
-                className="px-6 md:px-8 font-black uppercase tracking-[0.12em] text-black text-sm hover:brightness-110 transition"
-                style={{ backgroundColor: "#FF6B00", borderRadius: "0 4px 4px 0" }}
-              >
-                Buscar
-              </button>
             </form>
 
             {/* Chips */}
-            <div className="flex flex-wrap items-center gap-2 max-w-xl">
-              {[
-                { label: "Eventos", icon: "🎉", action: () => quickFilter("Eventos") },
-                { label: "Promoções", icon: "🔥", action: () => quickFilter(null, "promoção") },
-                { label: "Perto de mim", icon: "📍", action: () => quickFilter(null, "Centro") },
-              ].map((c) => (
-                <button
-                  key={c.label}
-                  onClick={c.action}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/85 bg-white/5 border border-white/15 hover:bg-[#FF6B00] hover:border-[#FF6B00] hover:text-black transition-colors"
-                  style={{ borderRadius: "4px" }}
-                >
-                  <span>{c.icon}</span> {c.label}
-                </button>
-              ))}
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-2 max-w-xs sm:max-w-none mx-auto">
+              <button
+                onClick={() => quickFilter("Eventos")}
+                className="inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold bg-background/20 backdrop-blur-sm border border-white/40 text-white hover:bg-[#FF6B00] hover:border-[#FF6B00] hover:text-black transition-colors"
+              >
+                <Calendar className="h-4 w-4" /> Eventos
+              </button>
+              <button
+                onClick={() => quickFilter(null, "promoção")}
+                className="inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold bg-background/20 backdrop-blur-sm border border-white/40 text-white hover:bg-[#FF6B00] hover:border-[#FF6B00] hover:text-black transition-colors"
+              >
+                <Flame className="h-4 w-4" /> Promoções
+              </button>
+              <button
+                onClick={() => quickFilter(null, "Centro")}
+                className="inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold bg-background/20 backdrop-blur-sm border border-white/40 text-white hover:bg-[#FF6B00] hover:border-[#FF6B00] hover:text-black transition-colors"
+              >
+                <MapPin className="h-4 w-4" /> Perto de mim
+              </button>
             </div>
           </div>
 
           {/* STATS */}
-          <div
-            className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] md:text-xs font-semibold uppercase tracking-[0.15em] text-white/65 opacity-0 animate-[heroFadeUp_0.7s_ease-out_1s_forwards]"
-          >
-            <span><span className="text-[#FF6B00] font-black">500+</span> Estabelecimentos</span>
-            <span className="text-white/25">·</span>
-            <span><span className="text-[#FF6B00] font-black">120+</span> Eventos/mês</span>
-            <span className="text-white/25">·</span>
-            <span><span className="text-[#FF6B00] font-black">15K</span> Usuários</span>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs md:text-sm font-semibold uppercase tracking-[0.12em] text-white/80 opacity-0 animate-[heroFadeUp_0.7s_ease-out_1s_forwards]">
+            <span><span className="font-black" style={{ color: "#FFB300" }}>500+</span> Estabelecimentos</span>
+            <span className="text-white/35">·</span>
+            <span><span className="font-black" style={{ color: "#FFB300" }}>120+</span> Eventos/mês</span>
+            <span className="text-white/35">·</span>
+            <span><span className="font-black" style={{ color: "#FFB300" }}>15K</span> Usuários</span>
           </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2 bottom-6 flex flex-col items-center gap-2 text-white/50 text-[10px] uppercase tracking-[0.25em]"
-          style={{ opacity: Math.max(0, 1 - scrollProgress * 2) }}
-        >
-          <span>Explorar</span>
-          <div className="w-5 h-8 rounded-full border border-white/40 flex items-start justify-center p-1">
-            <span className="w-0.5 h-1.5 rounded-full bg-white/70 animate-bounce" />
+          {/* Scroll indicator */}
+          <div
+            className="mt-12 flex flex-col items-center gap-2 text-white/70 text-[10px] uppercase tracking-[0.25em]"
+            style={{ opacity: Math.max(0, 1 - scrollProgress * 2) }}
+          >
+            <span>Role para explorar</span>
+            <div className="w-5 h-9 rounded-full border border-white/50 flex items-start justify-center p-1">
+              <span className="w-0.5 h-1.5 rounded-full bg-white/80 animate-bounce" />
+            </div>
           </div>
         </div>
       </div>
 
+      <div className="absolute bottom-0 left-0 right-0 h-8 bg-background" style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 50%, 0 0)" }} />
+
       <style>{`
         @keyframes heroFadeUp {
           from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heroFadeDown {
+          from { opacity: 0; transform: translateY(-12px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
